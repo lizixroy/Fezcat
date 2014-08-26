@@ -1,0 +1,270 @@
+//
+//  PageLoader.m
+//  Tweeft
+//
+//  Created by Zixuan Li on 8/18/14.
+//  Copyright (c) 2014 Mallocu. All rights reserved.
+//
+
+#import "PageLoader.h"
+#import "LoadedObject.h"
+#import "NotificationConstants.h"
+#import "DeviceAndModelTool.h"
+
+//test
+#import "TestWebView.h"
+
+@interface PageLoader()
+
+//number of live webviews. including those being downloaded
+@property (nonatomic, assign) NSUInteger currentLivePageCount;
+//indicator of whether there is page for user to view
+@property (nonatomic, assign) BOOL pageAvailable;
+//indicator of how many pages being loaded
+@property (nonatomic, assign) NSUInteger loadingPageNumber;
+
+@end
+
+@implementation PageLoader
+
+#pragma mark - Delegate
+
+- (id)init {
+    
+    self = [super init];
+    if (self) {
+    
+        self.currentLivePageCount = 0;
+        
+    }
+    
+    return self;
+    
+}
+
+- (NSMutableArray *)loadedWebviewQueue {
+    
+    if (_loadedWebviewQueue == nil) {
+        
+        _loadedWebviewQueue = [[NSMutableArray alloc] init];
+        
+    }
+    
+    return _loadedWebviewQueue;
+    
+}
+
+- (NSMutableArray *)watingURLQueue {
+    
+    if (_watingURLQueue == nil) {
+        
+        _watingURLQueue = [[NSMutableArray alloc] init];
+        
+    }
+    
+    return _watingURLQueue;
+    
+}
+
+
+/**
+ * aynchronously load html of a website
+ *@return void
+ */
+- (void)loadPageWithURL:(NSURL *)url {
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:startLoadingPage object:nil];
+    
+    self.loadingPageNumber++;
+    
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
+    
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            //create webview on the main thread
+            CGFloat webViewHeight = [[[UIApplication sharedApplication] keyWindow] frame].size.height;
+            webViewHeight -= 40;
+            
+            TestWebView *webView = [[TestWebView alloc] initWithFrame:CGRectMake(0, 0, 320, webViewHeight)];
+            
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                
+                //load web content in the background
+                [webView loadRequest:request];
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    self.loadingPageNumber--;
+                    [self.loadedWebviewQueue addObject:webView];
+                    
+                    NSLog(@"Now there are %lu pages in queue", (unsigned long)self.loadedWebviewQueue.count);
+                    
+                    if (!self.pageAvailable) {
+                        
+                        [[NSNotificationCenter defaultCenter] postNotificationName:pageDidBecomeAvailable object:nil];
+                        self.pageAvailable = YES;
+                        
+                    }
+                    
+                    if (self.loadingPageNumber == 0) {
+                    
+                        [[NSNotificationCenter defaultCenter] postNotificationName:didFinishLoadingPage object:nil];
+
+                    }
+                    
+                });
+                
+            });
+            
+            
+        });
+    
+}
+
+- (void)addURLtoWatingQueueWithURL:(NSURL *)url {
+    
+    if (self.currentLivePageCount < MAX_LIVE_WEB_VIEW) {
+        
+        //space available kick off loading
+        self.currentLivePageCount++;
+        [self loadPageWithURL:url];
+        [self tryLoadMorePage];
+        
+    } else {
+        
+        //add to wating queue
+        [self.watingURLQueue addObject:url];
+        
+    }
+    
+}
+
+- (UIWebView *)nextPage {
+    
+    if (self.loadedWebviewQueue.count == 0) {
+    
+        [[NSNotificationCenter defaultCenter] postNotificationName:pageDidBecomeUnavailable object:nil];
+        
+        self.pageAvailable = NO;
+        
+        [self tryLoadMorePage];
+        
+        return nil;
+        
+    } else if (self.loadedWebviewQueue.count == 1) {
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:pageDidBecomeUnavailable object:nil];
+        
+//        UIWebView *view = [self.loadedWebviewQueue objectAtIndex:0];
+        [self.loadedWebviewQueue removeObjectAtIndex:0];
+  //      view = nil;
+        
+        self.currentLivePageCount--;
+        
+        self.pageAvailable = NO;
+        
+        [self tryLoadMorePage];
+        
+        return nil;
+        
+    } else {
+        
+        //kill the first one
+//        UIWebView *view = [self.loadedWebviewQueue objectAtIndex:0];
+        [self.loadedWebviewQueue removeObjectAtIndex:0];
+  //      view = nil;
+        
+        self.currentLivePageCount--;
+        
+        [self tryLoadMorePage];
+        
+        //always return the first one (second element automatically fill the gap)
+        return self.loadedWebviewQueue.firstObject;
+        
+    }
+    
+}
+
+- (void)releaseCachedPages {
+    
+    int i;
+    for (i = 0; i < self.loadedWebviewQueue.count; i++) {
+        
+        UIWebView *webview = [self.loadedWebviewQueue objectAtIndex:i];
+        NSURL *url = webview.request.URL;
+        [self.watingURLQueue insertObject:url atIndex:0];
+        
+    }
+    
+    //release all cached web views
+    NSMutableArray *urlsToBeDeleted = [[NSMutableArray alloc] init];
+    for (i = 0; i < self.loadedWebviewQueue.count; i++) {
+        
+        [urlsToBeDeleted addObject:[self.loadedWebviewQueue objectAtIndex:i]];
+        self.currentLivePageCount--;
+        
+    }
+    
+    [self.loadedWebviewQueue removeObjectsInArray:urlsToBeDeleted];
+    self.pageAvailable = NO;
+    [[NSNotificationCenter defaultCenter] postNotificationName:pageDidBecomeUnavailable object:nil];
+    
+}
+
+- (void)removeCachedPages {
+    
+    self.loadedWebviewQueue = nil;
+    self.watingURLQueue = nil;
+    
+    self.currentLivePageCount = 0;
+    self.loadingPageNumber = 0;
+    
+    self.pageAvailable = NO;
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:pageDidBecomeUnavailable object:nil];
+}
+
+- (NSUInteger)totalCachedPageNumber {
+    
+    return self.currentLivePageCount + self.watingURLQueue.count;    
+    
+}
+
+#pragma mark - internal helpers
+
+/**
+ *try to load new website if wating queue is not empty 
+ *@return void
+ */
+- (void)tryLoadMorePage {
+    
+    if (self.watingURLQueue.count > 0 && self.currentLivePageCount < MAX_LIVE_WEB_VIEW) {
+        
+        NSUInteger empty_slot = MAX_LIVE_WEB_VIEW - self.currentLivePageCount;
+        
+        for (int i = 0; i < empty_slot; i++) {
+            
+            if (self.watingURLQueue.count > 0) {
+             
+                NSURL *url = self.watingURLQueue.firstObject;
+                self.currentLivePageCount++;
+                [self loadPageWithURL:url];
+                [self.watingURLQueue removeObjectAtIndex:0];
+                
+            }
+            
+        }
+        
+    }
+    
+}
+
+/**
+ *current loaded webview count
+ *@return NSUInteger
+ */
+- (NSUInteger)currentLoadedPagesCount {
+    return self.loadedWebviewQueue.count;
+}
+
+@end

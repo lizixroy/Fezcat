@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>88CA4DA2-AF2B-4861-87D4-C153F9D8DA89</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Tweeft</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>D9C26C97-AB1B-4E67-ADEB-4EE85AD402E0</key>
+		<string>https://bitbucket.org/lizix/tweeft.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Tweeft.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>D9C26C97-AB1B-4E67-ADEB-4EE85AD402E0</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://bitbucket.org/lizix/tweeft.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>D9C26C97-AB1B-4E67-ADEB-4EE85AD402E0</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>D9C26C97-AB1B-4E67-ADEB-4EE85AD402E0</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Tweeft</string>
+		</dict>
+	</array>
+</dict>
+</plist>
