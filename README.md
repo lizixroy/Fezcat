@@ -1,10 +1,10 @@
 Tweeft
 ======
 
-Tweeft is an open source Twitter client implementation designed to save time through loading web pages in the background.
+People share lots of links on Twitter, the experience has been rendered rather fragmented because everytime you open a page from a link you need to wait for it to load. Tweeft provides extremely smooth tweets browsing experiece by puting web paing loading on the background threads. I use this app everyday and I am delignted by how much it saved me everyday.
 
-1.0 is approved by Apple but still does not show up. It's probably because major update in App Store before the special event on 9/9. I will post more info about how you can contribute to Tweeft and how you can learn iOS dev with it shortly. 
+There are still lots of things to be done to make it even better. I am plaing to add major update very soon. In the meantime you can take it for a spin on the App Store https://itunes.apple.com/us/app/tweeft-swift-twitter-browser/id912519599?mt=8
 
-Roy
+It's also a good way to learn development for iOS by browsing Tweeft source code.
 
-
+For update, follow me on Twitter @ https://twitter.com/RoyLi1004
