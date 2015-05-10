@@ -110,12 +110,15 @@
 -(void)layoutSubviews {
      [super layoutSubviews];
     
+    CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
+    CGFloat leftPadding = 80;
+    CGFloat rightPadding = 20;
+    CGFloat width = screenWidth - leftPadding - rightPadding;
     //get text height
     CGFloat text_height = [NSString getStringSizeWithString:self.tweetLabel.text font:self.tweetLabel.font width:230].size.height;
+    self.tweetLabel.frame = CGRectMake(80, 45, width, text_height+5);
     
-    self.tweetLabel.frame = CGRectMake(80, 45, 230, text_height+5);
 }
-
 
 -(void)constructCellWithTweet:(Tweet *)tweet Cell:(TweetCell *)cell {
     

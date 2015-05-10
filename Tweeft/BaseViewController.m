@@ -14,6 +14,9 @@
 #import "PageLoader.h"
 #import "NotificationConstants.h"
 
+#define HANDLE_HEIGHT 40
+#define HANDLE_WIDTH 20
+
 @interface BaseViewController ()
 
 @property (nonatomic, strong) UIScrollView *scrollView;
@@ -55,11 +58,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
-    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, [DeviceAndModelTool deviceHeight])];
+    CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
+    CGFloat screenHeight = [[UIScreen mainScreen] bounds].size.height;
     
-    self.scrollView.contentSize = CGSizeMake(320 * 2, [DeviceAndModelTool deviceHeight]);
+    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, screenHeight)];
+    self.scrollView.contentSize = CGSizeMake(screenWidth * 2, screenHeight);
     self.scrollView.pagingEnabled = YES;
     self.scrollView.bounces = NO;
 
@@ -101,8 +105,11 @@
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:tvc];
     navController.navigationBar.barTintColor = [UIColor colorWithRed:0.929 green:0.302 blue:0.384 alpha:1];//[UIColor redColor];
     
-    navController.view.frame = CGRectMake(0, 0, 320, [DeviceAndModelTool deviceHeight]);
-    wpvc.view.frame = CGRectMake(320, 0, 320, [DeviceAndModelTool deviceHeight]);
+    CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
+    CGFloat screenHeight = [[UIScreen mainScreen] bounds].size.height;
+    
+    navController.view.frame = CGRectMake(0, 0, screenWidth, screenHeight);
+    wpvc.view.frame = CGRectMake(screenWidth, 0, screenWidth, screenHeight);
     
     [self.scrollView addSubview:navController.view];
     [self.scrollView addSubview:wpvc.view];
@@ -126,7 +133,10 @@
 
 - (void)addHandle {
     
-    self.handle = [[UIImageView alloc] initWithFrame:CGRectMake(300, 400, 20, 40)];
+    CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
+    
+    self.handle = [[UIImageView alloc] initWithFrame:CGRectMake(screenWidth - HANDLE_WIDTH, 400, HANDLE_WIDTH, HANDLE_HEIGHT)];
+    
     [self.handle setImage:[UIImage imageNamed:@"handle_original.png"]];
     [self.scrollView addSubview:self.handle];
     self.canScroll = NO;

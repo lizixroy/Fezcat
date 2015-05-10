@@ -23,6 +23,10 @@
                                                            NSFontAttributeName:[UIFont fontWithName:@"Avenir-Roman" size:20],
                                                            NSForegroundColorAttributeName:[UIColor whiteColor]}];
     
+    
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+
+    
     DefaultManager *defaultManager = [[DefaultManager alloc] init];
     
     //check whether user is logged in

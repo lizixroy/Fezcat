@@ -22,6 +22,7 @@
 #import "PlaceholderView.h"
 #import "DefaultManager.h"
 
+#define COUNTER_LEFT_PADDING 70
 
 typedef void (^ImageCompletionBlock)(UIImage *);
 
@@ -48,7 +49,7 @@ typedef enum ScorllDirection {
 @property (nonatomic, strong) PlaceholderView *placeholder;
 @property (nonatomic, strong) NSIndexPath *indexPath;
 @property (nonatomic, strong) UIAlertView *actionFailedAlert;
-
+@property (nonatomic, strong) UIImage *currentSavingImage;
 
 
 @end
@@ -79,17 +80,13 @@ const int LOAD_PAST_TWEET_MARGIN = 4000;
     self.tableView.backgroundColor = [UIColor colorWithRed:0.961 green:0.973 blue:0.980 alpha:1];
     
     //scroll to top button (Because iOS seems to fail to provide way to scroll to top a tableview that is embedded)
+    
     UIButton *scrollToTopButton = [[UIButton alloc] initWithFrame:CGRectMake(110, 10, 100, 30)];
     [scrollToTopButton addTarget:self action:@selector(scrollToTop) forControlEvents:UIControlEventTouchUpInside];
     [self.navigationController.navigationBar addSubview:scrollToTopButton];
     
-    UIButton *settingButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 5, 50, 50)];
-    UIImageView *settingButtonView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
-    [settingButtonView setImage:[UIImage imageNamed:@"menu_button.png"]];
-    [settingButton addSubview:settingButtonView];
-    [settingButton addTarget:self action:@selector(showActionSheet) forControlEvents:UIControlEventTouchUpInside];
-    
-    [self.navigationController.navigationBar addSubview:settingButton];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"category_menu.png"] style:UIBarButtonItemStylePlain target:self action:@selector(showActionSheet)];
+
     
     //register cell
     [self.tableView registerClass:[TweetCell class] forCellReuseIdentifier:@"tweetCell"];
@@ -269,8 +266,10 @@ const int LOAD_PAST_TWEET_MARGIN = 4000;
             
             UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(zoomImg:)];
             tap.numberOfTapsRequired = 1;
+            UILongPressGestureRecognizer * press = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(showSaveImageAlert:)];
             
             [cell.media addGestureRecognizer:tap];
+            [cell.media addGestureRecognizer:press];
             
             if (![self.twiterManager.cachedMedia  objectForKey:tweet.media_url]) {
                 
@@ -454,9 +453,11 @@ const int LOAD_PAST_TWEET_MARGIN = 4000;
 
 - (void)addCachedPagesCounter {
     
-    self.cachedPageCounter = [[UILabel alloc] initWithFrame:CGRectMake(250, 15, 50, 20)];
+    CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
+    CGFloat x = screenWidth - COUNTER_LEFT_PADDING;
+    self.cachedPageCounter = [[UILabel alloc] initWithFrame:CGRectMake(x, 14, 50, 20)];
     self.cachedPageCounter.textColor = [UIColor whiteColor];
-    self.cachedPageCounter.font = [UIFont fontWithName:@"Avenir-Roman" size:15];
+    self.cachedPageCounter.font = [UIFont fontWithName:@"Avenir-Roman" size:16];
     self.cachedPageCounter.textAlignment = NSTextAlignmentRight;
     [self.navigationController.navigationBar addSubview:self.cachedPageCounter];
     
@@ -477,15 +478,40 @@ const int LOAD_PAST_TWEET_MARGIN = 4000;
 -(void)zoomImg:(UIGestureRecognizer *)gesture {
     
     CGPoint point = [gesture locationInView:self.view];
-    
     NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:point];
-    
     TweetCell *cell = (TweetCell *)[self.tableView cellForRowAtIndexPath:indexPath];
     
     if (cell.media.image != nil) {
         
         [self.mediaFocusController showImage:cell.media.image fromView:cell.media];
     }
+    
+}
+
+- (void)showSaveImageAlert:(UILongPressGestureRecognizer *)gesture {
+    
+    if (gesture.state == UIGestureRecognizerStateBegan) {
+        
+        CGPoint point = [gesture locationInView:self.view];
+        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:point];
+        TweetCell *cell = (TweetCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+        self.currentSavingImage = cell.media.image;
+        
+        UIAlertController *ac = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertAction *saveAction = [UIAlertAction actionWithTitle:@"Save photo" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) { [self saveImage]; }];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+        [ac addAction:saveAction];
+        [ac addAction:cancelAction];
+        
+        [self presentViewController:ac animated:YES completion:nil];
+        
+    }
+    
+}
+
+- (void)saveImage {
+    
+    UIImageWriteToSavedPhotosAlbum(self.currentSavingImage, nil, nil, nil);
     
 }
     
@@ -656,6 +682,7 @@ const int LOAD_PAST_TWEET_MARGIN = 4000;
     if (_mediaFocusController == nil) {
         
         _mediaFocusController = [[URBMediaFocusViewController alloc] init];
+        
     }
     
     return  _mediaFocusController;
@@ -663,8 +690,8 @@ const int LOAD_PAST_TWEET_MARGIN = 4000;
 
 - (void)scrollToTop {
     
-    [self.tableView setContentOffset:CGPointMake(0, 0) animated:YES];
-    
+    [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
+
 }
 
 - (void)showActionSheet {

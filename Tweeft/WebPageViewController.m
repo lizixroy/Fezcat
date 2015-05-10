@@ -13,6 +13,9 @@
 #import "TMenu.h"
 #import "DeviceAndModelTool.h"
 
+#define FOOOTER_HEIGHT 40
+#define MENU_BUTTON_LEFT_PADDING 20
+
 @interface WebPageViewController ()
 
 @property (nonatomic, strong) UIView *headerView;
@@ -40,9 +43,12 @@
 {
     [super viewDidLoad];
     
-    CGFloat webViewHeight = 568 - 40;
+    CGFloat webViewHeight = 568 - FOOOTER_HEIGHT;
     
-    self.webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 320, webViewHeight)];
+    CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
+//    CGFloat screenHeight = [[UIScreen mainScreen] bounds].size.height;
+    
+    self.webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, webViewHeight)];
     [self.view addSubview:self.webView];
     self.webView.backgroundColor = [UIColor colorWithRed:0.961 green:0.973 blue:0.980 alpha:1];
     
@@ -84,21 +90,13 @@
 
 - (void)addFooter {
     
-    CGFloat y;
+    CGFloat screenHeight = [[UIScreen mainScreen] bounds].size.height;
+    CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
+    CGFloat y = screenHeight - FOOOTER_HEIGHT;
     
-    if (IS_IPHONE_5) {
-     
-        y = 528;
-        
-    } else {
-        
-        y = 440;
-    }
-    
-    UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, y, 320, 40)];
+    UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, y, screenWidth, 40)];
     footer.backgroundColor = [UIColor colorWithRed:0.945 green:0.408 blue:0.471 alpha:1];
     [self.view addSubview:footer];
-    
     
     UIButton *nextButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 0, 40, 40)];
     [nextButton addTarget:self action:@selector(next) forControlEvents:UIControlEventTouchUpInside];
@@ -122,8 +120,10 @@
     [forwardButton addSubview:forwardButtonView];
     
     [forwardButton addTarget:self action:@selector(goForward) forControlEvents:UIControlEventTouchUpInside];
-
-    UIButton *menuButton = [[UIButton alloc] initWithFrame:CGRectMake(270, 10, 40, 40)];
+    
+    CGFloat menuButtonWidth = 40;
+    CGFloat menuButtonX = screenWidth - menuButtonWidth - MENU_BUTTON_LEFT_PADDING;
+    UIButton *menuButton = [[UIButton alloc] initWithFrame:CGRectMake(menuButtonX, 10, 40, 40)];
     UIImageView *menuButtonView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 8, 31, 6)];
     [menuButtonView setImage:[UIImage imageNamed:@"more.png"]];
     

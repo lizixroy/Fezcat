@@ -84,9 +84,8 @@
             //create webview on the main thread
             CGFloat webViewHeight = [[[UIApplication sharedApplication] keyWindow] frame].size.height;
             webViewHeight -= 40;
-            
-            TestWebView *webView = [[TestWebView alloc] initWithFrame:CGRectMake(0, 0, 320, webViewHeight)];
-            
+            CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
+            TestWebView *webView = [[TestWebView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, webViewHeight)];
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 
                 //load web content in the background
