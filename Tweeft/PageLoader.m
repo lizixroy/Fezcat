@@ -33,7 +33,7 @@
     
     self = [super init];
     if (self) {
-    
+        
         self.currentLivePageCount = 0;
         
     }
@@ -74,49 +74,25 @@
 - (void)loadPageWithURL:(NSURL *)url {
     
     [[NSNotificationCenter defaultCenter] postNotificationName:startLoadingPage object:nil];
-    
-    self.loadingPageNumber++;
-    
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
+    CGFloat webViewHeight = [[[UIApplication sharedApplication] keyWindow] frame].size.height;
+    webViewHeight -= 40;
+    CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
+    TestWebView *webView = [[TestWebView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, webViewHeight)];
+    //load web content asynchronously.
+    [webView loadRequest:request];
+    [self.loadedWebviewQueue addObject:webView];
     
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            //create webview on the main thread
-            CGFloat webViewHeight = [[[UIApplication sharedApplication] keyWindow] frame].size.height;
-            webViewHeight -= 40;
-            CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
-            TestWebView *webView = [[TestWebView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, webViewHeight)];
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                
-                //load web content in the background
-                [webView loadRequest:request];
-                
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    
-                    self.loadingPageNumber--;
-                    [self.loadedWebviewQueue addObject:webView];
-                    
-                    NSLog(@"Now there are %lu pages in queue", (unsigned long)self.loadedWebviewQueue.count);
-                    
-                    if (!self.pageAvailable) {
-                        
-                        [[NSNotificationCenter defaultCenter] postNotificationName:pageDidBecomeAvailable object:nil];
-                        self.pageAvailable = YES;
-                        
-                    }
-                    
-                    if (self.loadingPageNumber == 0) {
-                    
-                        [[NSNotificationCenter defaultCenter] postNotificationName:didFinishLoadingPage object:nil];
-
-                    }
-                    
-                });
-                
-            });
-            
-            
-        });
+    NSLog(@"Now there are %lu pages in queue", (unsigned long)self.loadedWebviewQueue.count);
+    
+    if (!self.pageAvailable) {
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:pageDidBecomeAvailable object:nil];
+        self.pageAvailable = YES;
+        
+    }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:didFinishLoadingPage object:nil];
     
 }
 
@@ -141,43 +117,27 @@
 - (UIWebView *)nextPage {
     
     if (self.loadedWebviewQueue.count == 0) {
-    
+        
         [[NSNotificationCenter defaultCenter] postNotificationName:pageDidBecomeUnavailable object:nil];
-        
         self.pageAvailable = NO;
-        
         [self tryLoadMorePage];
-        
         return nil;
         
     } else if (self.loadedWebviewQueue.count == 1) {
         
         [[NSNotificationCenter defaultCenter] postNotificationName:pageDidBecomeUnavailable object:nil];
         
-//        UIWebView *view = [self.loadedWebviewQueue objectAtIndex:0];
         [self.loadedWebviewQueue removeObjectAtIndex:0];
-  //      view = nil;
-        
         self.currentLivePageCount--;
-        
         self.pageAvailable = NO;
-        
         [self tryLoadMorePage];
-        
         return nil;
         
     } else {
         
-        //kill the first one
-//        UIWebView *view = [self.loadedWebviewQueue objectAtIndex:0];
         [self.loadedWebviewQueue removeObjectAtIndex:0];
-  //      view = nil;
-        
         self.currentLivePageCount--;
-        
         [self tryLoadMorePage];
-        
-        //always return the first one (second element automatically fill the gap)
         return self.loadedWebviewQueue.firstObject;
         
     }
@@ -214,25 +174,22 @@
     
     self.loadedWebviewQueue = nil;
     self.watingURLQueue = nil;
-    
     self.currentLivePageCount = 0;
-    self.loadingPageNumber = 0;
-    
     self.pageAvailable = NO;
-    
     [[NSNotificationCenter defaultCenter] postNotificationName:pageDidBecomeUnavailable object:nil];
+    
 }
 
 - (NSUInteger)totalCachedPageNumber {
     
-    return self.currentLivePageCount + self.watingURLQueue.count;    
+    return self.currentLivePageCount + self.watingURLQueue.count;
     
 }
 
 #pragma mark - internal helpers
 
 /**
- *try to load new website if wating queue is not empty 
+ *try to load new website if wating queue is not empty
  *@return void
  */
 - (void)tryLoadMorePage {
@@ -244,7 +201,7 @@
         for (int i = 0; i < empty_slot; i++) {
             
             if (self.watingURLQueue.count > 0) {
-             
+                
                 NSURL *url = self.watingURLQueue.firstObject;
                 self.currentLivePageCount++;
                 [self loadPageWithURL:url];
