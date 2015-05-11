@@ -13,6 +13,7 @@
 
 //test
 #import "TestWebView.h"
+#import "WebKit/WebKit.h"
 
 @interface PageLoader()
 
@@ -22,6 +23,8 @@
 @property (nonatomic, assign) BOOL pageAvailable;
 //indicator of how many pages being loaded
 @property (nonatomic, assign) NSUInteger loadingPageNumber;
+@property (nonatomic) NSUInteger dummyViewIndex;
+@property (nonatomic, strong) NSArray *dummyViews;
 
 @end
 
@@ -29,12 +32,28 @@
 
 #pragma mark - Delegate
 
+- (id)initWithDummyViews:(NSArray *)dummyViews {
+
+    self = [super init];
+    if (self) {
+        
+        _dummyViewIndex = 0;
+        _currentLivePageCount = 0;
+        _dummyViews = dummyViews;
+        
+    }
+    
+    return self;
+    
+}
+
+
 - (id)init {
     
     self = [super init];
     if (self) {
         
-        self.currentLivePageCount = 0;
+        _currentLivePageCount = 0;
         
     }
     
@@ -79,8 +98,10 @@
     webViewHeight -= 40;
     CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
     TestWebView *webView = [[TestWebView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, webViewHeight)];
+    
     //load web content asynchronously.
     [webView loadRequest:request];
+    
     [self.loadedWebviewQueue addObject:webView];
     
     NSLog(@"Now there are %lu pages in queue", (unsigned long)self.loadedWebviewQueue.count);
@@ -114,7 +135,7 @@
     
 }
 
-- (UIWebView *)nextPage {
+- (WKWebView *)nextPage {
     
     if (self.loadedWebviewQueue.count == 0) {
         
@@ -135,13 +156,15 @@
         
     } else {
         
+        //TODO: did not release the webview from memory.
+        
         [self.loadedWebviewQueue removeObjectAtIndex:0];
         self.currentLivePageCount--;
         [self tryLoadMorePage];
         return self.loadedWebviewQueue.firstObject;
         
     }
-    
+        
 }
 
 - (void)releaseCachedPages {

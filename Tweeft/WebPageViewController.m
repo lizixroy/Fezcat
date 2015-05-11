@@ -12,6 +12,7 @@
 #import "NotificationConstants.h"
 #import "TMenu.h"
 #import "DeviceAndModelTool.h"
+#import "WebKit/WebKit.h"
 
 #define FOOOTER_HEIGHT 40
 #define MENU_BUTTON_LEFT_PADDING 20
@@ -19,7 +20,10 @@
 @interface WebPageViewController ()
 
 @property (nonatomic, strong) UIView *headerView;
-@property (nonatomic, strong) UIWebView *webView;
+@property (nonatomic, strong) WKWebView *webView;
+@property (nonatomic, strong) WKWebView *testWebView;
+@property (nonatomic, strong) UIView *testView;
+
 @property (nonatomic, assign) NSUInteger index;
 @property (nonatomic, strong) UIView *placeholoderView;
 @property (nonatomic, strong) UIButton *backButton;
@@ -43,12 +47,16 @@
 {
     [super viewDidLoad];
     
+    //TEST
+    self.testView = [[UIView alloc] init];
+    
     CGFloat webViewHeight = 568 - FOOOTER_HEIGHT;
     
     CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
 //    CGFloat screenHeight = [[UIScreen mainScreen] bounds].size.height;
     
-    self.webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, webViewHeight)];
+    self.webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, webViewHeight)];
+    
     [self.view addSubview:self.webView];
     self.webView.backgroundColor = [UIColor colorWithRed:0.961 green:0.973 blue:0.980 alpha:1];
     
@@ -144,18 +152,18 @@
 
 - (void)next {
 
-    UIWebView *nextWebView = [self.pageLoader nextPage];
+    WKWebView *nextWebView = [self.pageLoader nextPage];
     if (nextWebView != nil) {
         
-        nextWebView.scalesPageToFit = YES;
+//        nextWebView.scalesPageToFit = YES;
         [self.view addSubview:nextWebView];
         [self.webView removeFromSuperview];
         self.webView = nil;
         self.webView = nextWebView;
-        self.webView.scalesPageToFit = YES;
+//        self.webView.scalesPageToFit = YES;
         self.webView.backgroundColor = [UIColor colorWithRed:0.961 green:0.973 blue:0.980 alpha:1];
         
-    } else {
+    } else {        
         
         [self.webView removeFromSuperview];
         self.webView = nil;
@@ -189,13 +197,13 @@
 
 - (void)showMenu {
     
-    if (self.pageLoader.totalCachedPageNumber > 0) {
-    
-        self.menu = [[TMenu alloc] initWithCurrentURL:self.webView.request.URL
-                                           pageLoader:self.pageLoader];
-        [self.menu showMenu];
-        
-    }
+//    if (self.pageLoader.totalCachedPageNumber > 0) {
+//    
+//        self.menu = [[TMenu alloc] initWithCurrentURL:self.webView.request.URL
+//                                           pageLoader:self.pageLoader];
+//        [self.menu showMenu];
+//        
+//    }
 
     
 }
@@ -208,10 +216,10 @@
 - (void)pageDidBecomeAvailable {
     
     [self.placeholoderView removeFromSuperview];
-    UIWebView *webView = self.pageLoader.loadedWebviewQueue.firstObject;
-    [self.view addSubview:webView];
+    WKWebView *webView = self.pageLoader.loadedWebviewQueue.firstObject;
+    [self.view addSubview:webView];    
     self.webView = webView;
-    self.webView.scalesPageToFit = YES;
+//    self.webView.scalesPageToFit = YES;
     self.webView.backgroundColor = [UIColor colorWithRed:0.961 green:0.973 blue:0.980 alpha:1];
     
 }

@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WebKit/WebKit.h"
 
-@interface TestWebView : UIWebView
+@interface TestWebView : WKWebView
 
 @end

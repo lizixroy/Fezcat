@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "WebKit/WebKit.h"
+
 
 #define MAX_LIVE_WEB_VIEW 5
 
@@ -21,6 +23,8 @@
  */
 @property (nonatomic, strong) NSMutableArray *watingURLQueue;
 
+- (id)initWithDummyViews:(NSArray *)dummyViews;
+
 /**
  *add url to wating queue
  *@return void
@@ -31,7 +35,7 @@
  * get next webview instance from queue
  *@return UIWebView
  */
-- (UIWebView *)nextPage;
+- (WKWebView *)nextPage;
 
 /**
  *clean all cached pages to release memory. insert url of unviewed pages back to waiting queue
