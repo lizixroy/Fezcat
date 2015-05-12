@@ -58,7 +58,7 @@
         {
          
             NSURL *url = [NSURL URLWithString:@"http://nshipster.com"];
-            [self.pageLoader addURLtoWatingQueueWithURL:url];
+//            [self.pageLoader addURLtoWatingQueueWithURL:url];
             
         }
             break;
@@ -68,7 +68,7 @@
         {
             
             NSURL *url = [NSURL URLWithString:@"http://www.objc.io"];
-            [self.pageLoader addURLtoWatingQueueWithURL:url];
+//            [self.pageLoader addURLtoWatingQueueWithURL:url];
             
         }
             
@@ -79,7 +79,7 @@
         {
             
             NSURL *url = [NSURL URLWithString:@"http://apple.com"];
-            [self.pageLoader addURLtoWatingQueueWithURL:url];
+//            [self.pageLoader addURLtoWatingQueueWithURL:url];
             
         }
             

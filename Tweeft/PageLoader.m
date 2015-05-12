@@ -10,7 +10,7 @@
 #import "LoadedObject.h"
 #import "NotificationConstants.h"
 #import "DeviceAndModelTool.h"
-
+#import "Tweeft-Swift.h"
 //test
 #import "TestWebView.h"
 #import "WebKit/WebKit.h"
@@ -74,22 +74,33 @@
 
 - (NSMutableArray *)watingURLQueue {
     
-    if (_watingURLQueue == nil) {
+    if (_waitingURLQueue == nil) {
         
-        _watingURLQueue = [[NSMutableArray alloc] init];
+        _waitingURLQueue = [[NSMutableArray alloc] init];
         
     }
     
-    return _watingURLQueue;
+    return _waitingURLQueue;
     
 }
 
+- (NSMutableArray *)waitingTweetQueue {
+    
+    if (_waitingTweetQueue) {
+        
+        _waitingTweetQueue = [[NSMutableArray alloc] init];
+        
+    }
+    
+    return _waitingTweetQueue;
+    
+}
 
 /**
  * aynchronously load html of a website
  *@return void
  */
-- (void)loadPageWithURL:(NSURL *)url {
+- (void)loadPageWithURL:(NSURL *)url forTweet:(Tweet *)tweet {
     
     [[NSNotificationCenter defaultCenter] postNotificationName:startLoadingPage object:nil];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
@@ -105,6 +116,9 @@
     [dummyView addSubview:webView];
     [self.loadedWebviewQueue addObject:webView];
     
+    TFBrowserRecordManager *m = [[TFBrowserRecordManager alloc] init];
+    [m createRecordWithTweeft:tweet];
+    
     NSLog(@"Now there are %lu pages in queue", (unsigned long)self.loadedWebviewQueue.count);
     
     if (!self.pageAvailable) {
@@ -118,23 +132,25 @@
     
 }
 
-- (void)addURLtoWatingQueueWithURL:(NSURL *)url {
+- (void)addURLtoWatingQueueWithURL:(NSURL *)url tweet:(Tweet *)tweet {
     
     if (self.currentLivePageCount < MAX_LIVE_WEB_VIEW) {
         
         //space available kick off loading
         self.currentLivePageCount++;
-        [self loadPageWithURL:url];
+        [self loadPageWithURL:url forTweet:tweet];
         [self tryLoadMorePage];
         
     } else {
         
         //add to wating queue
         [self.watingURLQueue addObject:url];
+        [self.waitingTweetQueue addObject:tweet];
         
     }
     
 }
+
 
 - (WKWebView *)nextPage {
     
@@ -197,7 +213,8 @@
 - (void)removeCachedPages {
     
     self.loadedWebviewQueue = nil;
-    self.watingURLQueue = nil;
+    self.waitingURLQueue = nil;
+    self.waitingTweetQueue = nil;
     self.currentLivePageCount = 0;
     self.pageAvailable = NO;
     [[NSNotificationCenter defaultCenter] postNotificationName:pageDidBecomeUnavailable object:nil];
@@ -227,9 +244,11 @@
             if (self.watingURLQueue.count > 0) {
                 
                 NSURL *url = self.watingURLQueue.firstObject;
+                Tweet *tweet = self.waitingTweetQueue.firstObject;
                 self.currentLivePageCount++;
-                [self loadPageWithURL:url];
+                [self loadPageWithURL:url forTweet:tweet];
                 [self.watingURLQueue removeObjectAtIndex:0];
+                [self.waitingTweetQueue removeObjectAtIndex:0];
                 
             }
             

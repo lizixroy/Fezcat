@@ -43,7 +43,6 @@ typedef enum ScorllDirection {
 @property (nonatomic) BOOL isLoading;
 @property (nonatomic) Scroll_direction scrollDirection;
 @property (nonatomic) NSInteger lastContentOffset;
-@property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) TTutorial *tutorial;
 @property (nonatomic, strong) LoadingView *loadingView;
 @property (nonatomic, strong) PlaceholderView *placeholder;
@@ -391,6 +390,8 @@ const int LOAD_PAST_TWEET_MARGIN = 4000;
     [self.loadingView removeFromSuperview];
     [self.placeholder removeFromSuperview];
     
+    CGSize beforeContentSize = self.tableView.contentSize;
+    
     int index = 0;
     
     for (Tweet *tweet in self.twiterManager.tweets) {
@@ -400,6 +401,10 @@ const int LOAD_PAST_TWEET_MARGIN = 4000;
     }
     
     [self.tableView reloadData];
+    CGSize afterContentSize = self.tableView.contentSize;
+    CGPoint afterContentOffset = self.tableView.contentOffset;
+    CGPoint newContentOffset = CGPointMake(afterContentOffset.x, afterContentOffset.y + afterContentSize.height - beforeContentSize.height);
+    self.tableView.contentOffset = newContentOffset;
     [self.refreshControl endRefreshing];
     
 }
@@ -417,11 +422,10 @@ const int LOAD_PAST_TWEET_MARGIN = 4000;
         }
         
     }
-    
-    
+
     [self.tableView reloadData];
-    
     [self.placeholder removeFromSuperview];
+    
 }
 
 
@@ -726,9 +730,14 @@ const int LOAD_PAST_TWEET_MARGIN = 4000;
         
     }
     
-    [self.pageLoader addURLtoWatingQueueWithURL:url];
+    CGPoint position = [label convertPoint:CGPointZero toView:self.tableView];
+    NSIndexPath *path = [self.tableView indexPathForRowAtPoint:position];
+    Tweet *tweet = [self.allTweets objectAtIndex:path.row];
+    tweet.isRead = YES;
+    [self.tableView reloadRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationNone];
+    
+    [self.pageLoader addURLtoWatingQueueWithURL:url tweet:tweet];
     self.cachedPageCounter.text = [NSString stringWithFormat:@"%lu", (unsigned long)self.pageLoader.totalCachedPageNumber];
-    NSLog(@"URL selected is %@", url);
     
 }
 

@@ -9,7 +9,6 @@
 #import "TweetCell.h"
 #import "NSString+StringSize.h"
 
-
 @implementation TweetCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -42,7 +41,7 @@
     
 }
 
--(void)addTextLabel {
+-(void)addTextLabelForTweet:(Tweet *)tweet {
     
     self.tweetLabel = [[TTTAttributedLabel alloc] init];
     self.tweetLabel.font = [UIFont fontWithName:@"Avenir" size:16];
@@ -51,9 +50,21 @@
     self.tweetLabel.enabledTextCheckingTypes = NSTextCheckingTypeLink;
     self.tweetLabel.userInteractionEnabled = YES;
     
-    NSArray *keys = [[NSArray alloc] initWithObjects:(id)kCTForegroundColorAttributeName,(id)kCTUnderlineStyleAttributeName
-                     , nil];
-    NSArray *objects = [[NSArray alloc] initWithObjects:[UIColor colorWithRed:0.929 green:0.302 blue:0.384 alpha:1],[NSNumber numberWithInt:kCTUnderlineStyleNone], nil];
+    NSArray *keys = [[NSArray alloc] initWithObjects:(id)kCTForegroundColorAttributeName,(id)kCTUnderlineStyleAttributeName, nil];
+    
+    NSArray *objects;
+    
+    if (tweet.isRead) {
+        
+        objects = [[NSArray alloc] initWithObjects:[UIColor colorWithRed:0.184 green:0.506 blue:0.718 alpha:1],
+                   [NSNumber numberWithInt:NSUnderlineStyleSingle], nil];
+        
+    } else {
+        
+        objects = [[NSArray alloc] initWithObjects:[UIColor colorWithRed:0.929 green:0.302 blue:0.384 alpha:1],
+                   [NSNumber numberWithInt:NSUnderlineStyleSingle], nil];
+
+    }
     
     NSDictionary *linkAttributes = [[NSDictionary alloc] initWithObjects:objects forKeys:keys];
     self.tweetLabel.linkAttributes = linkAttributes;
@@ -111,7 +122,7 @@
 
 -(void)constructCellWithTweet:(Tweet *)tweet Cell:(TweetCell *)cell {
     
-    [cell addTextLabel];
+    [cell addTextLabelForTweet:tweet];
     [cell addUserThumbnailView];
     [cell addRetweetButton];
     [cell addLikeButton];

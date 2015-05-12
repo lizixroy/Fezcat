@@ -10,6 +10,8 @@
 		B07B394A1AFB10D400DAA5DC /* category_menu.png in Resources */ = {isa = PBXBuildFile; fileRef = B07B39471AFB10D400DAA5DC /* category_menu.png */; };
 		B07B394B1AFB10D400DAA5DC /* category_menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B07B39481AFB10D400DAA5DC /* category_menu@2x.png */; };
 		B07B394C1AFB10D400DAA5DC /* category_menu@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B07B39491AFB10D400DAA5DC /* category_menu@3x.png */; };
+		B0B3D1CD1B01B1F500D6A5F4 /* TFBrowseRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B3D1CC1B01B1F500D6A5F4 /* TFBrowseRecord.swift */; };
+		B0B3D1CF1B01B46800D6A5F4 /* TFBrowserRecordManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B3D1CE1B01B46800D6A5F4 /* TFBrowserRecordManager.swift */; };
 		B0CF2C5B1B00491E00649BA8 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0CF2C5A1B00491E00649BA8 /* WebKit.framework */; };
 		D63240EF19A3CE2E00F7A469 /* handle_available@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D63240EE19A3CE2E00F7A469 /* handle_available@2x.png */; };
 		D63240F119A3CE3300F7A469 /* handle_loading@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D63240F019A3CE3300F7A469 /* handle_loading@2x.png */; };
@@ -88,6 +90,7 @@
 		DDD5D1AC19AA94C100A7A59B /* bird@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DDD5D1AB19AA94C100A7A59B /* bird@2x.png */; };
 		DDD7BE4A19ABC38000B4B49C /* liked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DDD7BE4819ABC38000B4B49C /* liked@2x.png */; };
 		DDD7BE4B19ABC38000B4B49C /* retweeted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DDD7BE4919ABC38000B4B49C /* retweeted@2x.png */; };
+		FBE284F43859A4701D63D626 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0A512B33413FCFE3AEF9C7 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,9 +104,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		36DA93C8715E4C48D2D86232 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		4F4FB76F1058DB729B821DDC /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B07B39471AFB10D400DAA5DC /* category_menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = category_menu.png; sourceTree = "<group>"; };
 		B07B39481AFB10D400DAA5DC /* category_menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "category_menu@2x.png"; sourceTree = "<group>"; };
 		B07B39491AFB10D400DAA5DC /* category_menu@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "category_menu@3x.png"; sourceTree = "<group>"; };
+		B0B3D1CB1B01B1F500D6A5F4 /* Tweeft-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tweeft-Bridging-Header.h"; sourceTree = "<group>"; };
+		B0B3D1CC1B01B1F500D6A5F4 /* TFBrowseRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TFBrowseRecord.swift; sourceTree = "<group>"; };
+		B0B3D1CE1B01B46800D6A5F4 /* TFBrowserRecordManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TFBrowserRecordManager.swift; sourceTree = "<group>"; };
 		B0CF2C5A1B00491E00649BA8 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		D63240EE19A3CE2E00F7A469 /* handle_available@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "handle_available@2x.png"; sourceTree = "<group>"; };
 		D63240F019A3CE3300F7A469 /* handle_loading@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "handle_loading@2x.png"; sourceTree = "<group>"; };
@@ -218,6 +226,7 @@
 		DDD5D1AB19AA94C100A7A59B /* bird@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bird@2x.png"; sourceTree = "<group>"; };
 		DDD7BE4819ABC38000B4B49C /* liked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "liked@2x.png"; sourceTree = "<group>"; };
 		DDD7BE4919ABC38000B4B49C /* retweeted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "retweeted@2x.png"; sourceTree = "<group>"; };
+		EE0A512B33413FCFE3AEF9C7 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,6 +243,7 @@
 				D65E6F7319A2B4F000F7ECA2 /* CoreGraphics.framework in Frameworks */,
 				D65E6F7519A2B4F000F7ECA2 /* UIKit.framework in Frameworks */,
 				D65E6F7119A2B4F000F7ECA2 /* Foundation.framework in Frameworks */,
+				FBE284F43859A4701D63D626 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,6 +277,7 @@
 				D65E6F9519A2B4F000F7ECA2 /* TweeftTests */,
 				D65E6F6F19A2B4F000F7ECA2 /* Frameworks */,
 				D65E6F6E19A2B4F000F7ECA2 /* Products */,
+				FFA980A9605CE9D0D75A99ED /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -292,6 +303,7 @@
 				D65E6F7219A2B4F000F7ECA2 /* CoreGraphics.framework */,
 				D65E6F7419A2B4F000F7ECA2 /* UIKit.framework */,
 				D65E6F8F19A2B4F000F7ECA2 /* XCTest.framework */,
+				EE0A512B33413FCFE3AEF9C7 /* Pods.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -395,6 +407,7 @@
 				D6E573EA19AA7AF60052222B /* DefaultManager.m */,
 				D6E573EC19AAE3200052222B /* TTutorial.h */,
 				D6E573ED19AAE3200052222B /* TTutorial.m */,
+				B0B3D1CE1B01B46800D6A5F4 /* TFBrowserRecordManager.swift */,
 			);
 			name = ToolBox;
 			sourceTree = "<group>";
@@ -445,6 +458,8 @@
 				DD77B65219A4234D00FAFB10 /* Tweet.m */,
 				D65E6FB519A2BA7600F7ECA2 /* LoadedObject.h */,
 				D65E6FB619A2BA7600F7ECA2 /* LoadedObject.m */,
+				B0B3D1CC1B01B1F500D6A5F4 /* TFBrowseRecord.swift */,
+				B0B3D1CB1B01B1F500D6A5F4 /* Tweeft-Bridging-Header.h */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -501,6 +516,15 @@
 			name = Vender;
 			sourceTree = "<group>";
 		};
+		FFA980A9605CE9D0D75A99ED /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4F4FB76F1058DB729B821DDC /* Pods.debug.xcconfig */,
+				36DA93C8715E4C48D2D86232 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -508,9 +532,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D65E6F9F19A2B4F000F7ECA2 /* Build configuration list for PBXNativeTarget "Tweeft" */;
 			buildPhases = (
+				9F3E4DB5617B0AAE9B295106 /* Check Pods Manifest.lock */,
 				D65E6F6919A2B4F000F7ECA2 /* Sources */,
 				D65E6F6A19A2B4F000F7ECA2 /* Frameworks */,
 				D65E6F6B19A2B4F000F7ECA2 /* Resources */,
+				ED313F2D321B2FF615780FA7 /* Embed Pods Frameworks */,
+				F6BE354486392BB1608C1DED /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -628,6 +655,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		9F3E4DB5617B0AAE9B295106 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		ED313F2D321B2FF615780FA7 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F6BE354486392BB1608C1DED /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D65E6F6919A2B4F000F7ECA2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -636,6 +711,7 @@
 				DDD5D1AA19AA8EDC00A7A59B /* PlaceholderView.m in Sources */,
 				D65E6F8719A2B4F000F7ECA2 /* TweetsViewController.m in Sources */,
 				DD77B65619A423D800FAFB10 /* TimelineViewController.m in Sources */,
+				B0B3D1CD1B01B1F500D6A5F4 /* TFBrowseRecord.swift in Sources */,
 				DD61540319A59E5E00F52760 /* TTTAttributedLabel.m in Sources */,
 				D6FC7FBF19A3B5020036F100 /* NotificationConstants.m in Sources */,
 				D6D29F5919A99151003D8BAD /* WalkthroughChildViewController.m in Sources */,
@@ -653,6 +729,7 @@
 				D6D29F5619A98FA2003D8BAD /* WalkthroughViewController.m in Sources */,
 				DD67E42519A706690073B90E /* URBMediaFocusViewController.m in Sources */,
 				D65E6FAC19A2B5DB00F7ECA2 /* BaseViewController.m in Sources */,
+				B0B3D1CF1B01B46800D6A5F4 /* TFBrowserRecordManager.swift in Sources */,
 				D67C171C19A51B1300B69705 /* HPButton.m in Sources */,
 				D67C172C19A51DCF00B69705 /* PocketAPI.m in Sources */,
 				D63240F719A3DD0B00F7A469 /* TestWebView.m in Sources */,
@@ -746,7 +823,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -778,7 +855,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -786,11 +863,14 @@
 		};
 		D65E6FA019A2B4F000F7ECA2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4F4FB76F1058DB729B821DDC /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -798,19 +878,25 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Tweeft/Tweeft-Prefix.pch";
 				INFOPLIST_FILE = "Tweeft/Tweeft-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Tweeft/Tweeft-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
 		};
 		D65E6FA119A2B4F000F7ECA2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 36DA93C8715E4C48D2D86232 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -818,8 +904,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Tweeft/Tweeft-Prefix.pch";
 				INFOPLIST_FILE = "Tweeft/Tweeft-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Tweeft/Tweeft-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

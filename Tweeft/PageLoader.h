@@ -9,19 +9,14 @@
 #import <Foundation/Foundation.h>
 #import "WebKit/WebKit.h"
 
-
 #define MAX_LIVE_WEB_VIEW 5
+@class Tweet;
 
 @interface PageLoader : NSObject
 
-/**
- *webviews that are loaded and ready to be displayed on view
- */
 @property (nonatomic, strong) NSMutableArray *loadedWebviewQueue;
-/**
- *url to be loaded when loadedWebviewQueue has space
- */
-@property (nonatomic, strong) NSMutableArray *watingURLQueue;
+@property (nonatomic, strong) NSMutableArray *waitingURLQueue;
+@property (nonatomic, strong) NSMutableArray *waitingTweetQueue;
 
 /**
  * init with dummy views that are needed for loading web pages in the background
@@ -34,7 +29,7 @@
  *add url to wating queue
  *@return void
  */
-- (void)addURLtoWatingQueueWithURL:(NSURL *)url;
+- (void)addURLtoWatingQueueWithURL:(NSURL *)url tweet:(Tweet *)tweet;
 
 /**
  * get next webview instance from queue

@@ -384,8 +384,7 @@ const NSUInteger LOAD_TWEET_BATCH_NUMBER = 40;
         profile_image_url = [profile_image_url stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
         tweet.user_thumbnail_url = profile_image_url;
         tweet.user_name = [[tweetDictionary objectForKey:@"user"] objectForKey:@"name"];
-        
-        
+        tweet.user_id = [[tweetDictionary objectForKey:@"user"] objectForKey:@"id_str"];
         NSNumber *retweeted = [tweetDictionary objectForKey:@"retweeted"];
         if ([retweeted isEqualToNumber:[NSNumber numberWithInt:0]]) {
             
