@@ -25,15 +25,6 @@
     return self;
 }
 
--(void)addMediaView {
-    
-    self.media = [[UIImageView alloc] init];
-    [self.contentView addSubview:self.media];
-    
-    self.media.userInteractionEnabled = YES;
-    
-}
-
 -(void)addUserThumbnailView {
     
     self.userThumbnail = [[UIImageView alloc] initWithFrame:CGRectMake(15, 15, 50, 50)];
@@ -54,7 +45,7 @@
 -(void)addTextLabel {
     
     self.tweetLabel = [[TTTAttributedLabel alloc] init];
-    self.tweetLabel.font = [UIFont fontWithName:@"Avenir-Roman" size:16];
+    self.tweetLabel.font = [UIFont fontWithName:@"Avenir" size:16];
     self.tweetLabel.lineBreakMode = NSLineBreakByWordWrapping;
     self.tweetLabel.numberOfLines = 0;
     self.tweetLabel.enabledTextCheckingTypes = NSTextCheckingTypeLink;
@@ -99,7 +90,6 @@
 }
 
 
-
 -(void)addSeperator {
     
     UIView *separator = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 0.5)];
@@ -108,15 +98,14 @@
 }
 
 -(void)layoutSubviews {
-     [super layoutSubviews];
     
+    [super layoutSubviews];
     CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
     CGFloat leftPadding = 80;
     CGFloat rightPadding = 20;
     CGFloat width = screenWidth - leftPadding - rightPadding;
-    //get text height
-    CGFloat text_height = [NSString getStringSizeWithString:self.tweetLabel.text font:self.tweetLabel.font width:230].size.height;
-    self.tweetLabel.frame = CGRectMake(80, 45, width, text_height+5);
+    CGFloat text_height = [NSString getStringSizeWithString:self.tweetLabel.text font:self.tweetLabel.font width:width].size.height;
+    self.tweetLabel.frame = CGRectMake(80, 45, width, text_height + 5);
     
 }
 
@@ -129,21 +118,26 @@
     cell.tweetLabel.text = tweet.text;
     cell.userNameLabel.text = tweet.user_name;
     
+    CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
+    CGFloat leftPadding = 80;
+    CGFloat rightPadding = 20;
+    CGFloat width = screenWidth - leftPadding - rightPadding;
+    CGFloat text_height = [NSString getStringSizeWithString:self.tweetLabel.text font:self.tweetLabel.font width:width].size.height;
+    
     if (tweet.media_url == nil) {
         
-        cell.retweetButton.frame = CGRectMake(80, 55 + tweet.text_height,  40, 40);
-        
-        cell.likeButton.frame = CGRectMake(130, 53 + tweet.text_height, 40, 40);
+        cell.retweetButton.frame = CGRectMake(80, 55 + text_height,  40, 40);
+        cell.likeButton.frame = CGRectMake(130, 53 + text_height, 40, 40);
         
     } else {
         
-        
-        cell.retweetButton.frame = CGRectMake(80, 72 + tweet.text_height + tweet.media_image_height * 230 / tweet.media_image_width, 35, 25);
-        
-        cell.likeButton.frame = CGRectMake(130, 70 + tweet.text_height + tweet.media_image_height * 230 / tweet.media_image_width, 40, 40);
+        self.media = [[UIImageView alloc] initWithFrame:CGRectMake(leftPadding, 55 + text_height, width, tweet.media_image_height * width / tweet.media_image_width)];
+        [self.contentView addSubview:self.media];
+        self.media.userInteractionEnabled = YES;
+        cell.retweetButton.frame = CGRectMake(80, 75 + text_height + tweet.media_image_height * width / tweet.media_image_width, 35, 25);
+        cell.likeButton.frame = CGRectMake(130, 73 + text_height + tweet.media_image_height * width / tweet.media_image_width, 40, 40);
 
     }
-    //check is liked
     
     if (tweet.favorited) {
         

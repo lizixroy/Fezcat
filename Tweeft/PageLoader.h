@@ -23,7 +23,12 @@
  */
 @property (nonatomic, strong) NSMutableArray *watingURLQueue;
 
-- (id)initWithDummyViews:(NSArray *)dummyViews;
+/**
+ * init with dummy views that are needed for loading web pages in the background
+ * @param NSArray dummyViews - array of UIViews
+ * @return PageLoader
+ */
+- (instancetype)initWithDummyViews:(NSArray *)dummyViews;
 
 /**
  *add url to wating queue

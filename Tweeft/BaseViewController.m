@@ -24,6 +24,8 @@
 //handle
 @property (nonatomic, strong) UIImageView *handle;
 @property (nonatomic, assign) BOOL canScroll;
+// need dummy views to start loading web views
+@property (nonatomic, strong) NSMutableArray *dummyViews;
 
 @end
 
@@ -123,13 +125,31 @@
     [navController didMoveToParentViewController:self];
     [wpvc didMoveToParentViewController:self];
     
-    PageLoader *pageLoader = [[PageLoader alloc] init];
+    [self createDummyViews];
+    
+    PageLoader *pageLoader = [[PageLoader alloc] initWithDummyViews:self.dummyViews];
     tvc.pageLoader = pageLoader;
     wpvc.pageLoader = pageLoader;
     
     [self addHandle];
     
 }
+
+- (void)createDummyViews {
+    
+    self.dummyViews = [[NSMutableArray alloc] init];
+    CGFloat unreachableX = -1000;
+    CGFloat unreachableY = -1000;
+    for (int i = 0; i < 5; i++) {
+        
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(unreachableX, unreachableY, 1, 1)];
+        [self.view addSubview:view];
+        self.dummyViews[i] = view;
+        
+    }
+    
+}
+
 
 - (void)addHandle {
     

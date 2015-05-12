@@ -16,13 +16,11 @@
     
     if (self) {
         // Initialization code
+        CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
         self.backgroundColor = [UIColor colorWithRed:0.925 green:0.941 blue:0.945 alpha:1];
         UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-        
-        indicator.frame = CGRectMake(160 - indicator.bounds.size.width / 2, 60, indicator.frame.size.height, indicator.frame.size.width);
-        
+        indicator.frame = CGRectMake(screenWidth / 2 - indicator.bounds.size.width / 2, 60, indicator.frame.size.height, indicator.frame.size.width);
         [indicator startAnimating];
-        
         [self addSubview:indicator];
         
     }

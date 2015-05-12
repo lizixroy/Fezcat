@@ -21,9 +21,6 @@
 
 @property (nonatomic, strong) UIView *headerView;
 @property (nonatomic, strong) WKWebView *webView;
-@property (nonatomic, strong) WKWebView *testWebView;
-@property (nonatomic, strong) UIView *testView;
-
 @property (nonatomic, assign) NSUInteger index;
 @property (nonatomic, strong) UIView *placeholoderView;
 @property (nonatomic, strong) UIButton *backButton;
@@ -47,14 +44,8 @@
 {
     [super viewDidLoad];
     
-    //TEST
-    self.testView = [[UIView alloc] init];
-    
     CGFloat webViewHeight = 568 - FOOOTER_HEIGHT;
-    
     CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
-//    CGFloat screenHeight = [[UIScreen mainScreen] bounds].size.height;
-    
     self.webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, webViewHeight)];
     
     [self.view addSubview:self.webView];
@@ -74,8 +65,10 @@
     
 }
 
+
 - (void)didReceiveMemoryWarning
 {
+    
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
     
@@ -155,12 +148,10 @@
     WKWebView *nextWebView = [self.pageLoader nextPage];
     if (nextWebView != nil) {
         
-//        nextWebView.scalesPageToFit = YES;
         [self.view addSubview:nextWebView];
         [self.webView removeFromSuperview];
         self.webView = nil;
         self.webView = nextWebView;
-//        self.webView.scalesPageToFit = YES;
         self.webView.backgroundColor = [UIColor colorWithRed:0.961 green:0.973 blue:0.980 alpha:1];
         
     } else {        
@@ -204,7 +195,6 @@
 //        [self.menu showMenu];
 //        
 //    }
-
     
 }
 

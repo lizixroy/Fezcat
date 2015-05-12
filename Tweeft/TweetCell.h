@@ -22,7 +22,6 @@
 @property (nonatomic, strong) UIImageView *retweetImg;
 @property (nonatomic, strong) UIImageView *favoriteImg;
 
--(void)addMediaView;
 -(void)addUserThumbnailView;
 -(void)addTextLabel;
 

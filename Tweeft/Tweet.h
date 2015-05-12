@@ -15,7 +15,6 @@
 @property (nonatomic, strong) NSString *user_thumbnail_url;
 
 @property (nonatomic, strong) NSString *text;
-@property (nonatomic, assign) NSUInteger text_height;
 @property (nonatomic, assign) NSUInteger *retweet_count;
 
 @property (nonatomic, assign) BOOL favorited;

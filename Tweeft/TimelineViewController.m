@@ -86,7 +86,7 @@ const int LOAD_PAST_TWEET_MARGIN = 4000;
     [self.navigationController.navigationBar addSubview:scrollToTopButton];
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"category_menu.png"] style:UIBarButtonItemStylePlain target:self action:@selector(showActionSheet)];
-
+    
     
     //register cell
     [self.tableView registerClass:[TweetCell class] forCellReuseIdentifier:@"tweetCell"];
@@ -175,7 +175,7 @@ const int LOAD_PAST_TWEET_MARGIN = 4000;
     }
     
     self.isLoading = NO;
-
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -216,108 +216,109 @@ const int LOAD_PAST_TWEET_MARGIN = 4000;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-        TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"tweetCell" forIndexPath:indexPath];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"tweetCell" forIndexPath:indexPath];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-        Tweet *tweet = [self.allTweets objectAtIndex:indexPath.row];
+    Tweet *tweet = [self.allTweets objectAtIndex:indexPath.row];
     
-        [cell constructCellWithTweet:tweet Cell:cell];
-        cell.tweetLabel.delegate = self;
-        [cell.retweetButton addTarget:self action:@selector(retweet:) forControlEvents:UIControlEventTouchUpInside];
-        [cell.likeButton addTarget:self action:@selector(like:) forControlEvents:UIControlEventTouchUpInside];
-
-
+    [cell constructCellWithTweet:tweet Cell:cell];
+    cell.tweetLabel.delegate = self;
+    [cell.retweetButton addTarget:self action:@selector(retweet:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.likeButton addTarget:self action:@selector(like:) forControlEvents:UIControlEventTouchUpInside];
     
-        //load user thumbnail
-        if (![self.twiterManager.cachedThumbnail  objectForKey:tweet.user_name]) {
+    //load user thumbnail
+    if (![self.twiterManager.cachedThumbnail  objectForKey:tweet.user_name]) {
+        
+        [self fetchImageWithURL:[NSURL URLWithString:tweet.user_thumbnail_url]
+                completionBlock:^(UIImage *image) {
+                    
+                    if (image != nil) {
+                        
+                        [self.twiterManager.cachedThumbnail setObject:image forKey:tweet.user_name];
+                        
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            
+                            TweetCell *cell = (TweetCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+                            cell.userThumbnail.image = image;
+                            
+                        });
+                        
+                    }
+                    
+                }];
+        
+        
+    } else {
+        
+        cell.userThumbnail.image = [self.twiterManager.cachedThumbnail objectForKey:tweet.user_name];
+        
+    }
+    
+    //load media
+    if (tweet.media_url != nil) {
+        
+        cell.media_url = tweet.media_url;
+        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(zoomImg:)];
+        tap.numberOfTapsRequired = 1;
+        UILongPressGestureRecognizer * press = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(showSaveImageAlert:)];
+        
+        [cell.media addGestureRecognizer:tap];
+        [cell.media addGestureRecognizer:press];
+        
+        if (![self.twiterManager.cachedMedia  objectForKey:tweet.media_url]) {
             
-            [self fetchImageWithURL:[NSURL URLWithString:tweet.user_thumbnail_url]
+            [self fetchImageWithURL:[NSURL URLWithString:tweet.media_url]
                     completionBlock:^(UIImage *image) {
                         
                         if (image != nil) {
                             
-                            [self.twiterManager.cachedThumbnail setObject:image forKey:tweet.user_name];
-                            
                             dispatch_async(dispatch_get_main_queue(), ^{
                                 
+                                [self.twiterManager.cachedMedia setObject:image forKey:tweet.media_url];
+                                
                                 TweetCell *cell = (TweetCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-                                cell.userThumbnail.image = image;
+                                cell.media.image = image;
                                 
                             });
                             
                         }
                         
                     }];
-            
-            
         } else {
             
-            cell.userThumbnail.image = [self.twiterManager.cachedThumbnail objectForKey:tweet.user_name];
+            cell.media.image = [self.twiterManager.cachedMedia objectForKey:tweet.media_url];
             
         }
         
-        //load media
-        if (tweet.media_url != nil) {
-            
-            cell.media_url = tweet.media_url;
-            
-            [cell addMediaView];
-            cell.media.frame = CGRectMake(80, tweet.text_height + 5 + 50, 230, tweet.media_image_height * 230 / tweet.media_image_width);
-            
-            UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(zoomImg:)];
-            tap.numberOfTapsRequired = 1;
-            UILongPressGestureRecognizer * press = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(showSaveImageAlert:)];
-            
-            [cell.media addGestureRecognizer:tap];
-            [cell.media addGestureRecognizer:press];
-            
-            if (![self.twiterManager.cachedMedia  objectForKey:tweet.media_url]) {
-                
-                [self fetchImageWithURL:[NSURL URLWithString:tweet.media_url]
-                        completionBlock:^(UIImage *image) {
-                            
-                            if (image != nil) {
-                            
-                                dispatch_async(dispatch_get_main_queue(), ^{
-                                    
-                                     [self.twiterManager.cachedMedia setObject:image forKey:tweet.media_url];
-                  
-                                    TweetCell *cell = (TweetCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-                                    cell.media.image = image;
-                                    
-                                });
-                                
-                            }
-                            
-                        }];
-            } else {
-                
-                cell.media.image = [self.twiterManager.cachedMedia objectForKey:tweet.media_url];
-                
-            }
-            
-        }
-        
-        return cell;
-
+    }
+    
+    return cell;
+    
     
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    //get tweet    
+    //get tweet
     Tweet *tweet = [self.allTweets objectAtIndex:indexPath.row];
+    CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
+    CGFloat leftPadding = 80;
+    CGFloat rightPadding = 20;
+    CGFloat width = screenWidth - leftPadding - rightPadding;
+    CGFloat text_height = [NSString getStringSizeWithString:tweet.text
+                                                       font:[UIFont fontWithName:@"Avenir" size:16]
+                                                      width:width].size.height;
     
     if (tweet.media_url != nil) {
         
-        return 105 + tweet.text_height + tweet.media_image_height * 230 / tweet.media_image_width;
+        return 110 + text_height + tweet.media_image_height * width / tweet.media_image_width;
         
     } else {
         
-        return 90 + tweet.text_height;
-
+        return 90 + text_height;
+        
     }
-
+    
 }
 
 #pragma mark - notification handlers
@@ -357,8 +358,8 @@ const int LOAD_PAST_TWEET_MARGIN = 4000;
     [self.actionFailedAlert show];
     Tweet *tweet = [self.allTweets objectAtIndex:self.indexPath.row];
     tweet.favorited = YES;
-
-
+    
+    
 }
 
 -(void)didFailRetweet {
@@ -368,9 +369,10 @@ const int LOAD_PAST_TWEET_MARGIN = 4000;
     [self.actionFailedAlert show];
     Tweet *tweet = [self.allTweets objectAtIndex:self.indexPath.row];
     tweet.retweeted = NO;
-
-
+    
+    
 }
+
 
 -(void)didFailUndoRetweet {
     
@@ -379,10 +381,9 @@ const int LOAD_PAST_TWEET_MARGIN = 4000;
     [self.actionFailedAlert show];
     Tweet *tweet = [self.allTweets objectAtIndex:self.indexPath.row];
     tweet.retweeted = YES;
-
-
+    
+    
 }
-
 
 
 - (void)didSyncNewTweets {
@@ -403,8 +404,9 @@ const int LOAD_PAST_TWEET_MARGIN = 4000;
     
 }
 
-- (void)didSyncOldTweets {
 
+- (void)didSyncOldTweets {
+    
     self.isLoading = NO;
     
     for (Tweet *tweet in self.twiterManager.tweets) {
@@ -413,14 +415,15 @@ const int LOAD_PAST_TWEET_MARGIN = 4000;
             
             [self.allTweets addObject:tweet];
         }
-
+        
     }
-
-
+    
+    
     [self.tableView reloadData];
     
     [self.placeholder removeFromSuperview];
 }
+
 
 - (void)didGoToNextPage {
     
@@ -436,6 +439,7 @@ const int LOAD_PAST_TWEET_MARGIN = 4000;
     
 }
 
+
 - (void)willLogOut {
     
     [self.pageLoader removeCachedPages];
@@ -444,6 +448,7 @@ const int LOAD_PAST_TWEET_MARGIN = 4000;
     [self.tableView reloadData];
     
 }
+
 
 - (void)didBecomeUnavailable {
     
@@ -463,6 +468,7 @@ const int LOAD_PAST_TWEET_MARGIN = 4000;
     
 }
 
+
 #pragma mark - helpers
 - (void)fetchImageWithURL:(NSURL *)url completionBlock:(ImageCompletionBlock)completionBlock {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^ {
@@ -474,6 +480,7 @@ const int LOAD_PAST_TWEET_MARGIN = 4000;
         
     });
 }
+
 
 -(void)zoomImg:(UIGestureRecognizer *)gesture {
     
@@ -487,6 +494,7 @@ const int LOAD_PAST_TWEET_MARGIN = 4000;
     }
     
 }
+
 
 - (void)showSaveImageAlert:(UILongPressGestureRecognizer *)gesture {
     
@@ -509,12 +517,13 @@ const int LOAD_PAST_TWEET_MARGIN = 4000;
     
 }
 
+
 - (void)saveImage {
     
     UIImageWriteToSavedPhotosAlbum(self.currentSavingImage, nil, nil, nil);
     
 }
-    
+
 /**
  *loading past posts from server.
  *@return void
@@ -525,11 +534,11 @@ const int LOAD_PAST_TWEET_MARGIN = 4000;
     self.isLoading = YES;
     [self.twiterManager resetOldestTweetId:self.allTweets];
     [self.twiterManager fetchOldTweets];
-
-}
     
+}
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-        
+    
     //get direction of the scroll
     if (self.lastContentOffset > scrollView.contentOffset.y)
         self.scrollDirection = DirectionUp;
@@ -549,7 +558,7 @@ const int LOAD_PAST_TWEET_MARGIN = 4000;
                 
                 if (!self.isLoading) {
                     
-                        [self loadingOldTweets];
+                    [self loadingOldTweets];
                     
                 }
                 
@@ -558,14 +567,14 @@ const int LOAD_PAST_TWEET_MARGIN = 4000;
         }
         
     }
-        
+    
 }
 
 - (void)loadNewTweets {
     
     [self.refreshControl beginRefreshing];
     [self.twiterManager fetchNewTweets];
-
+    
 }
 
 -(void)like:(id)sender {
@@ -582,7 +591,7 @@ const int LOAD_PAST_TWEET_MARGIN = 4000;
         TweetCell *cell = (TweetCell *)[self.tableView cellForRowAtIndexPath:indexPath];
         cell.favoriteImg.image = [UIImage imageNamed:@"liked.png"];
         tweet.favorited = YES;
-    
+        
     } else {
         //undo favorite
         
@@ -691,7 +700,7 @@ const int LOAD_PAST_TWEET_MARGIN = 4000;
 - (void)scrollToTop {
     
     [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
-
+    
 }
 
 - (void)showActionSheet {

@@ -433,12 +433,7 @@ const NSUInteger LOAD_TWEET_BATCH_NUMBER = 40;
             
         }
         
-        NSUInteger text_height = [NSString getStringSizeWithString:tweet.text font: [UIFont fontWithName:@"Avenir-Roman" size:16] width:230].size.height;
-        
-        tweet.text_height = text_height;
-        tweet.tweet_id = [[tweetDictionary objectForKey:@"id"] stringValue];
-        
-        
+        tweet.tweet_id = [[tweetDictionary objectForKey:@"id"] stringValue];            
         [self.tweets addObject:tweet];
     }
     

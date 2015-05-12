@@ -32,7 +32,7 @@
 
 #pragma mark - Delegate
 
-- (id)initWithDummyViews:(NSArray *)dummyViews {
+- (instancetype)initWithDummyViews:(NSArray *)dummyViews {
 
     self = [super init];
     if (self) {
@@ -46,7 +46,6 @@
     return self;
     
 }
-
 
 - (id)init {
     
@@ -101,7 +100,9 @@
     
     //load web content asynchronously.
     [webView loadRequest:request];
-    
+    UIView *dummyView = self.dummyViews[self.dummyViewIndex];
+    [self updateDummyViewIndex];
+    [dummyView addSubview:webView];
     [self.loadedWebviewQueue addObject:webView];
     
     NSLog(@"Now there are %lu pages in queue", (unsigned long)self.loadedWebviewQueue.count);
@@ -156,12 +157,12 @@
         
     } else {
         
-        //TODO: did not release the webview from memory.
-        
         [self.loadedWebviewQueue removeObjectAtIndex:0];
         self.currentLivePageCount--;
         [self tryLoadMorePage];
-        return self.loadedWebviewQueue.firstObject;
+        WKWebView *webView = self.loadedWebviewQueue.firstObject;
+        [webView removeFromSuperview];
+        return webView;
         
     }
         
@@ -244,6 +245,12 @@
  */
 - (NSUInteger)currentLoadedPagesCount {
     return self.loadedWebviewQueue.count;
+}
+
+- (void)updateDummyViewIndex {
+    
+    self.dummyViewIndex = (self.dummyViewIndex + 1) % MAX_LIVE_WEB_VIEW;
+    
 }
 
 @end
