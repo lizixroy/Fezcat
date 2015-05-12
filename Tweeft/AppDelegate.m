@@ -17,10 +17,19 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
+    NSArray *fontFamilies = [UIFont familyNames];
+    
+    for (int i = 0; i < [fontFamilies count]; i++)
+    {
+        NSString *fontFamily = [fontFamilies objectAtIndex:i];
+        NSArray *fontNames = [UIFont fontNamesForFamilyName:[fontFamilies objectAtIndex:i]];
+        NSLog (@"%@: %@", fontFamily, fontNames);
+    }
+    
     [[PocketAPI sharedAPI] setConsumerKey:@"31160-6f0085e8ae7296b4b152f1b2"];
     
     [[UINavigationBar appearance] setTitleTextAttributes:@{
-                                                           NSFontAttributeName:[UIFont fontWithName:@"Avenir-Roman" size:20],
+                                                           NSFontAttributeName:[UIFont fontWithName:@"Italianno-Regular" size:30],
                                                            NSForegroundColorAttributeName:[UIColor whiteColor]}];
     
     

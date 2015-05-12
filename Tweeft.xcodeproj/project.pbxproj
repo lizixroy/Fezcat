@@ -12,6 +12,7 @@
 		B07B394C1AFB10D400DAA5DC /* category_menu@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B07B39491AFB10D400DAA5DC /* category_menu@3x.png */; };
 		B0B3D1CD1B01B1F500D6A5F4 /* TFBrowseRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B3D1CC1B01B1F500D6A5F4 /* TFBrowseRecord.swift */; };
 		B0B3D1CF1B01B46800D6A5F4 /* TFBrowserRecordManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B3D1CE1B01B46800D6A5F4 /* TFBrowserRecordManager.swift */; };
+		B0B3D1D61B027F6400D6A5F4 /* Italianno-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B0B3D1D51B027F6400D6A5F4 /* Italianno-Regular.ttf */; };
 		B0CF2C5B1B00491E00649BA8 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0CF2C5A1B00491E00649BA8 /* WebKit.framework */; };
 		D63240EF19A3CE2E00F7A469 /* handle_available@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D63240EE19A3CE2E00F7A469 /* handle_available@2x.png */; };
 		D63240F119A3CE3300F7A469 /* handle_loading@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D63240F019A3CE3300F7A469 /* handle_loading@2x.png */; };
@@ -112,6 +113,7 @@
 		B0B3D1CB1B01B1F500D6A5F4 /* Tweeft-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tweeft-Bridging-Header.h"; sourceTree = "<group>"; };
 		B0B3D1CC1B01B1F500D6A5F4 /* TFBrowseRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TFBrowseRecord.swift; sourceTree = "<group>"; };
 		B0B3D1CE1B01B46800D6A5F4 /* TFBrowserRecordManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TFBrowserRecordManager.swift; sourceTree = "<group>"; };
+		B0B3D1D51B027F6400D6A5F4 /* Italianno-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Italianno-Regular.ttf"; sourceTree = "<group>"; };
 		B0CF2C5A1B00491E00649BA8 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		D63240EE19A3CE2E00F7A469 /* handle_available@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "handle_available@2x.png"; sourceTree = "<group>"; };
 		D63240F019A3CE3300F7A469 /* handle_loading@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "handle_loading@2x.png"; sourceTree = "<group>"; };
@@ -260,6 +262,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B0B3D1D01B02778F00D6A5F4 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				B0B3D1D51B027F6400D6A5F4 /* Italianno-Regular.ttf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
 		D63240F419A3DCFB00F7A469 /* Test */ = {
 			isa = PBXGroup;
 			children = (
@@ -333,6 +343,7 @@
 		D65E6F7719A2B4F000F7ECA2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B0B3D1D01B02778F00D6A5F4 /* Fonts */,
 				D65E6FB119A2BA1B00F7ECA2 /* images */,
 				D65E6F7819A2B4F000F7ECA2 /* Tweeft-Info.plist */,
 				D65E6F7919A2B4F000F7ECA2 /* InfoPlist.strings */,
@@ -638,6 +649,7 @@
 				B07B394C1AFB10D400DAA5DC /* category_menu@3x.png in Resources */,
 				D63240F119A3CE3300F7A469 /* handle_loading@2x.png in Resources */,
 				D6ABA86D19A6EDE200264231 /* background@2x.png in Resources */,
+				B0B3D1D61B027F6400D6A5F4 /* Italianno-Regular.ttf in Resources */,
 				DDD7BE4B19ABC38000B4B49C /* retweeted@2x.png in Resources */,
 				D6E5740319AC27520052222B /* tutorial_main_small@2x.png in Resources */,
 				D6D29F6119A99FB6003D8BAD /* tweet@2x.png in Resources */,
