@@ -21,13 +21,13 @@ NSString *didGoToNextPage  = @"didGoToNextPage";
 NSString *didFindMultipleAccounts = @"didFindMultipleAccounts";
 NSString *didLogIn = @"didLogIn";
 NSString *willLogOut = @"willLogOut";
-
 NSString *didFailSynsTweets = @"didFailSynsTweets";
 NSString *didFailSynsTweetsNotFirstTime = @"didFailSynsTweetsNotFirstTime";
 NSString *didFailSyncOldTweets = @"didFailSynsOldTweets";
-
 NSString *didFailLikeTweet = @"didFailLikeTweet";
 NSString *didFailUnLikeTweet = @"didFailUnLikeTweet";
 NSString *didFailRetweet = @"didFailRetweet";
 NSString *didFailUndoRetweet = @"didFailUndoRetweet";
+NSString *AppDidEnterBackground = @"AppDidEnterBackground";
+
 @end

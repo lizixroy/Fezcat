@@ -13,7 +13,19 @@
 		B0B3D1CD1B01B1F500D6A5F4 /* TFBrowseRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B3D1CC1B01B1F500D6A5F4 /* TFBrowseRecord.swift */; };
 		B0B3D1CF1B01B46800D6A5F4 /* TFBrowserRecordManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B3D1CE1B01B46800D6A5F4 /* TFBrowserRecordManager.swift */; };
 		B0B3D1D61B027F6400D6A5F4 /* Italianno-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B0B3D1D51B027F6400D6A5F4 /* Italianno-Regular.ttf */; };
+		B0B3D1DA1B028FAF00D6A5F4 /* thumbnail.png in Resources */ = {isa = PBXBuildFile; fileRef = B0B3D1D71B028FAF00D6A5F4 /* thumbnail.png */; };
+		B0B3D1DB1B028FAF00D6A5F4 /* thumbnail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0B3D1D81B028FAF00D6A5F4 /* thumbnail@2x.png */; };
+		B0B3D1DC1B028FAF00D6A5F4 /* thumbnail@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0B3D1D91B028FAF00D6A5F4 /* thumbnail@3x.png */; };
+		B0B3D1E01B0295C400D6A5F4 /* thumbnail01.png in Resources */ = {isa = PBXBuildFile; fileRef = B0B3D1DD1B0295C400D6A5F4 /* thumbnail01.png */; };
+		B0B3D1E11B0295C400D6A5F4 /* thumbnail01@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0B3D1DE1B0295C400D6A5F4 /* thumbnail01@2x.png */; };
+		B0B3D1E21B0295C400D6A5F4 /* thumbnail01@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0B3D1DF1B0295C400D6A5F4 /* thumbnail01@3x.png */; };
+		B0B3D1E61B029A1700D6A5F4 /* thumbnail02.png in Resources */ = {isa = PBXBuildFile; fileRef = B0B3D1E31B029A1700D6A5F4 /* thumbnail02.png */; };
+		B0B3D1E71B029A1700D6A5F4 /* thumbnail02@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0B3D1E41B029A1700D6A5F4 /* thumbnail02@2x.png */; };
+		B0B3D1E81B029A1700D6A5F4 /* thumbnail02@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0B3D1E51B029A1700D6A5F4 /* thumbnail02@3x.png */; };
 		B0CF2C5B1B00491E00649BA8 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0CF2C5A1B00491E00649BA8 /* WebKit.framework */; };
+		B0FC15611B02AF0E005A15D0 /* thumbnail03.png in Resources */ = {isa = PBXBuildFile; fileRef = B0FC155E1B02AF0E005A15D0 /* thumbnail03.png */; };
+		B0FC15621B02AF0E005A15D0 /* thumbnail03@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0FC155F1B02AF0E005A15D0 /* thumbnail03@2x.png */; };
+		B0FC15631B02AF0E005A15D0 /* thumbnail03@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0FC15601B02AF0E005A15D0 /* thumbnail03@3x.png */; };
 		D63240EF19A3CE2E00F7A469 /* handle_available@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D63240EE19A3CE2E00F7A469 /* handle_available@2x.png */; };
 		D63240F119A3CE3300F7A469 /* handle_loading@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D63240F019A3CE3300F7A469 /* handle_loading@2x.png */; };
 		D63240F319A3D28B00F7A469 /* handle_unavailable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D63240F219A3D28B00F7A469 /* handle_unavailable@2x.png */; };
@@ -114,7 +126,19 @@
 		B0B3D1CC1B01B1F500D6A5F4 /* TFBrowseRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TFBrowseRecord.swift; sourceTree = "<group>"; };
 		B0B3D1CE1B01B46800D6A5F4 /* TFBrowserRecordManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TFBrowserRecordManager.swift; sourceTree = "<group>"; };
 		B0B3D1D51B027F6400D6A5F4 /* Italianno-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Italianno-Regular.ttf"; sourceTree = "<group>"; };
+		B0B3D1D71B028FAF00D6A5F4 /* thumbnail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thumbnail.png; sourceTree = "<group>"; };
+		B0B3D1D81B028FAF00D6A5F4 /* thumbnail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thumbnail@2x.png"; sourceTree = "<group>"; };
+		B0B3D1D91B028FAF00D6A5F4 /* thumbnail@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thumbnail@3x.png"; sourceTree = "<group>"; };
+		B0B3D1DD1B0295C400D6A5F4 /* thumbnail01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thumbnail01.png; sourceTree = "<group>"; };
+		B0B3D1DE1B0295C400D6A5F4 /* thumbnail01@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thumbnail01@2x.png"; sourceTree = "<group>"; };
+		B0B3D1DF1B0295C400D6A5F4 /* thumbnail01@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thumbnail01@3x.png"; sourceTree = "<group>"; };
+		B0B3D1E31B029A1700D6A5F4 /* thumbnail02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thumbnail02.png; sourceTree = "<group>"; };
+		B0B3D1E41B029A1700D6A5F4 /* thumbnail02@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thumbnail02@2x.png"; sourceTree = "<group>"; };
+		B0B3D1E51B029A1700D6A5F4 /* thumbnail02@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thumbnail02@3x.png"; sourceTree = "<group>"; };
 		B0CF2C5A1B00491E00649BA8 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		B0FC155E1B02AF0E005A15D0 /* thumbnail03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thumbnail03.png; sourceTree = "<group>"; };
+		B0FC155F1B02AF0E005A15D0 /* thumbnail03@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thumbnail03@2x.png"; sourceTree = "<group>"; };
+		B0FC15601B02AF0E005A15D0 /* thumbnail03@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thumbnail03@3x.png"; sourceTree = "<group>"; };
 		D63240EE19A3CE2E00F7A469 /* handle_available@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "handle_available@2x.png"; sourceTree = "<group>"; };
 		D63240F019A3CE3300F7A469 /* handle_loading@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "handle_loading@2x.png"; sourceTree = "<group>"; };
 		D63240F219A3D28B00F7A469 /* handle_unavailable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "handle_unavailable@2x.png"; sourceTree = "<group>"; };
@@ -426,6 +450,18 @@
 		D65E6FB119A2BA1B00F7ECA2 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				B0FC155E1B02AF0E005A15D0 /* thumbnail03.png */,
+				B0FC155F1B02AF0E005A15D0 /* thumbnail03@2x.png */,
+				B0FC15601B02AF0E005A15D0 /* thumbnail03@3x.png */,
+				B0B3D1E31B029A1700D6A5F4 /* thumbnail02.png */,
+				B0B3D1E41B029A1700D6A5F4 /* thumbnail02@2x.png */,
+				B0B3D1E51B029A1700D6A5F4 /* thumbnail02@3x.png */,
+				B0B3D1DD1B0295C400D6A5F4 /* thumbnail01.png */,
+				B0B3D1DE1B0295C400D6A5F4 /* thumbnail01@2x.png */,
+				B0B3D1DF1B0295C400D6A5F4 /* thumbnail01@3x.png */,
+				B0B3D1D71B028FAF00D6A5F4 /* thumbnail.png */,
+				B0B3D1D81B028FAF00D6A5F4 /* thumbnail@2x.png */,
+				B0B3D1D91B028FAF00D6A5F4 /* thumbnail@3x.png */,
 				D6E573FB19AB7C3C0052222B /* tutorial_url@2x.png */,
 				DDD7BE4819ABC38000B4B49C /* liked@2x.png */,
 				DDD7BE4919ABC38000B4B49C /* retweeted@2x.png */,
@@ -619,22 +655,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6E573FE19AB9FF10052222B /* retweet@2x.png in Resources */,
+				B0B3D1E81B029A1700D6A5F4 /* thumbnail02@3x.png in Resources */,
 				D6E5740019ABB0920052222B /* Loading_pages_2@2x.png in Resources */,
 				D6E573FD19AB9FD20052222B /* like@2x.png in Resources */,
 				D632411119A4382700F7A469 /* white_tweeft_logo@2x.png in Resources */,
 				D6D29F6719AA38A9003D8BAD /* twitter_logo@2x.png in Resources */,
+				B0B3D1DC1B028FAF00D6A5F4 /* thumbnail@3x.png in Resources */,
 				D632410319A41DC400F7A469 /* back@2x.png in Resources */,
+				B0B3D1E01B0295C400D6A5F4 /* thumbnail01.png in Resources */,
 				D63240F319A3D28B00F7A469 /* handle_unavailable@2x.png in Resources */,
+				B0B3D1E71B029A1700D6A5F4 /* thumbnail02@2x.png in Resources */,
 				D6D29F5B19A99A71003D8BAD /* iphone_case@2x.png in Resources */,
 				D632410719A422CE00F7A469 /* menu@2x.png in Resources */,
 				D6E5740419AC27520052222B /* tutorial_main@2x.png in Resources */,
 				D63240EF19A3CE2E00F7A469 /* handle_available@2x.png in Resources */,
+				B0B3D1E11B0295C400D6A5F4 /* thumbnail01@2x.png in Resources */,
 				D63240FD19A3FFD200F7A469 /* tweeft_logo@2x.png in Resources */,
 				D6D29F6319A9A5B5003D8BAD /* timeline@2x.png in Resources */,
 				D6E573FA19AB7C380052222B /* tutorial_url_small@2x.png in Resources */,
+				B0B3D1E21B0295C400D6A5F4 /* thumbnail01@3x.png in Resources */,
 				D6D29F6919AA3C92003D8BAD /* menu_button@2x.png in Resources */,
 				B07B394B1AFB10D400DAA5DC /* category_menu@2x.png in Resources */,
 				D63240F919A3FE2400F7A469 /* placeholder@2x.png in Resources */,
+				B0FC15631B02AF0E005A15D0 /* thumbnail03@3x.png in Resources */,
 				D6E573FC19AB7C3C0052222B /* tutorial_url@2x.png in Resources */,
 				D65E6F8919A2B4F000F7ECA2 /* Images.xcassets in Resources */,
 				D63240FF19A4147000F7A469 /* nextButton@2x.png in Resources */,
@@ -645,14 +688,19 @@
 				DDD5D1AC19AA94C100A7A59B /* bird@2x.png in Resources */,
 				D65E6FB319A2BA2700F7ECA2 /* handle@2x.png in Resources */,
 				DDD7BE4A19ABC38000B4B49C /* liked@2x.png in Resources */,
+				B0FC15611B02AF0E005A15D0 /* thumbnail03.png in Resources */,
 				D65E6F8419A2B4F000F7ECA2 /* Main.storyboard in Resources */,
+				B0B3D1E61B029A1700D6A5F4 /* thumbnail02.png in Resources */,
 				B07B394C1AFB10D400DAA5DC /* category_menu@3x.png in Resources */,
 				D63240F119A3CE3300F7A469 /* handle_loading@2x.png in Resources */,
 				D6ABA86D19A6EDE200264231 /* background@2x.png in Resources */,
 				B0B3D1D61B027F6400D6A5F4 /* Italianno-Regular.ttf in Resources */,
+				B0B3D1DA1B028FAF00D6A5F4 /* thumbnail.png in Resources */,
 				DDD7BE4B19ABC38000B4B49C /* retweeted@2x.png in Resources */,
 				D6E5740319AC27520052222B /* tutorial_main_small@2x.png in Resources */,
+				B0B3D1DB1B028FAF00D6A5F4 /* thumbnail@2x.png in Resources */,
 				D6D29F6119A99FB6003D8BAD /* tweet@2x.png in Resources */,
+				B0FC15621B02AF0E005A15D0 /* thumbnail03@2x.png in Resources */,
 				D632410919A424E600F7A469 /* more@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

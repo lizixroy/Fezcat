@@ -101,4 +101,9 @@
  */
 + (TwitterManager *)sharedObject;
 
+/**
+ * clean all the cached resoueces to release memory back to the system
+ */
+- (void)cleanCache;
+
 @end

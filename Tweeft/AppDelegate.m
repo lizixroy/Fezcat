@@ -11,30 +11,20 @@
 #import "WalkthroughViewController.h"
 #import "TwitterManager.h"
 #import "DefaultManager.h"
+#import "NotificationConstants.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
-    NSArray *fontFamilies = [UIFont familyNames];
-    
-    for (int i = 0; i < [fontFamilies count]; i++)
-    {
-        NSString *fontFamily = [fontFamilies objectAtIndex:i];
-        NSArray *fontNames = [UIFont fontNamesForFamilyName:[fontFamilies objectAtIndex:i]];
-        NSLog (@"%@: %@", fontFamily, fontNames);
-    }
-    
-    [[PocketAPI sharedAPI] setConsumerKey:@"31160-6f0085e8ae7296b4b152f1b2"];
-    
+    [[PocketAPI sharedAPI] setConsumerKey:@"31160-6f0085e8ae7296b4b152f1b2"];    
     [[UINavigationBar appearance] setTitleTextAttributes:@{
                                                            NSFontAttributeName:[UIFont fontWithName:@"Italianno-Regular" size:30],
                                                            NSForegroundColorAttributeName:[UIColor whiteColor]}];
     
     
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-
     
     DefaultManager *defaultManager = [[DefaultManager alloc] init];
     
@@ -70,6 +60,7 @@
     return YES;
 }
 
+
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
     
     if ([[PocketAPI sharedAPI] handleOpenURL:url]) {
@@ -82,6 +73,7 @@
     
 }
 
+
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
@@ -92,6 +84,7 @@
     }
     
 }
+
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
@@ -109,6 +102,13 @@
         }
         
     }
+    
+}
+
+
+- (void)applicationWillResignActive:(UIApplication *)application {
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:AppDidEnterBackground object:nil];
     
 }
 

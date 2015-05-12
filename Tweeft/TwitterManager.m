@@ -703,4 +703,11 @@ const NSUInteger LOAD_TWEET_BATCH_NUMBER = 40;
     return _newestTweetId;
 }
 
+- (void)cleanCache {
+    
+    [self.cachedMedia removeAllObjects];
+    [self.cachedThumbnail removeAllObjects];
+    
+}
+
 @end

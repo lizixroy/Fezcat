@@ -188,13 +188,13 @@
 
 - (void)showMenu {
     
-//    if (self.pageLoader.totalCachedPageNumber > 0) {
-//    
-//        self.menu = [[TMenu alloc] initWithCurrentURL:self.webView.request.URL
-//                                           pageLoader:self.pageLoader];
-//        [self.menu showMenu];
-//        
-//    }
+    if (self.pageLoader.totalCachedPageNumber > 0) {
+    
+        self.menu = [[TMenu alloc] initWithCurrentURL:self.webView.URL
+                                           pageLoader:self.pageLoader];
+        [self.menu showMenu];
+        
+    }
     
 }
 
@@ -209,7 +209,6 @@
     WKWebView *webView = self.pageLoader.loadedWebviewQueue.firstObject;
     [self.view addSubview:webView];    
     self.webView = webView;
-//    self.webView.scalesPageToFit = YES;
     self.webView.backgroundColor = [UIColor colorWithRed:0.961 green:0.973 blue:0.980 alpha:1];
     
 }
@@ -230,15 +229,30 @@
     
     if (_placeholoderView == nil) {
         
-        _placeholoderView = [[UIView alloc] initWithFrame:self.webView.frame];
-        UIImage *placeholderImage = [UIImage imageNamed:@"background.png"];
-        UIImageView *placeholderImageView = [[UIImageView alloc] initWithFrame:self.webView.frame];
-        [placeholderImageView setImage:placeholderImage];
-        [_placeholoderView addSubview:placeholderImageView];
+        _placeholoderView = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        
+        CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
+        CGFloat thumbnailDimension = 80;
+        CGFloat x = (screenWidth - thumbnailDimension) / 2;
+        UIImageView *thumbnailView = [[UIImageView alloc] initWithFrame:CGRectMake(x, 100, thumbnailDimension, thumbnailDimension)];
+        thumbnailView.image = [UIImage imageNamed:@"thumbnail02.png"];
+        [_placeholoderView addSubview:thumbnailView];
+        
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(40, 200, screenWidth - 80, 150)];
+        label.textColor = [UIColor colorWithRed:0.290 green:0.565 blue:0.886 alpha:1];
+        label.textAlignment = NSTextAlignmentCenter;
+        label.font = [UIFont fontWithName:@"Avenir" size:18];
+        label.numberOfLines = 0;
+        label.lineBreakMode = NSLineBreakByWordWrapping;
+        label.text = @"What? Out of pages? Grab some from your tomelime & keep reading.\n\nScroll left to your timeline";
+        [_placeholoderView addSubview:label];
+        
+        _placeholoderView.backgroundColor = [UIColor colorWithRed:0.961 green:0.973 blue:0.980 alpha:1];//[UIColor whiteColor];
         
     }
     
     return _placeholoderView;
+    
 }
 
 @end

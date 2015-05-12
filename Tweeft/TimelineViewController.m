@@ -150,6 +150,11 @@ const int LOAD_PAST_TWEET_MARGIN = 4000;
                                                  name:didFailUnLikeTweet
                                                object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(appDidEnterBackground)
+                                                 name:AppDidEnterBackground
+                                               object:nil];
+    
     self.allTweets = [[NSMutableArray alloc] init];
     
     [self addCachedPagesCounter];
@@ -193,8 +198,9 @@ const int LOAD_PAST_TWEET_MARGIN = 4000;
 
 - (void)didReceiveMemoryWarning
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [super didReceiveMemoryWarning];    
+    [self.twiterManager cleanCache];
+    
 }
 
 #pragma mark - Table view data source
@@ -752,4 +758,13 @@ const int LOAD_PAST_TWEET_MARGIN = 4000;
     }
     
 }
+
+
+- (void)appDidEnterBackground {
+    
+    //release cached resources to give back memory to system.
+    [self.twiterManager cleanCache];
+    
+}
+
 @end

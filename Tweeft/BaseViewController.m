@@ -198,12 +198,12 @@
 - (void)pageDidBecomeUnavailable {
     
     //scroll back to tweets view controller
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        
-        [self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
-        [self handleBecomeUnavailable];
-        
-    });
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        
+//        [self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+//        [self handleBecomeUnavailable];
+//        
+//    });
     
 }
 

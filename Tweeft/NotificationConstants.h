@@ -21,14 +21,15 @@ extern NSString *didGoToNextPage;
 extern NSString *didFindMultipleAccounts;
 extern NSString *didLogIn;
 extern NSString *willLogOut;
-
 extern NSString *didFailSynsTweets;
 extern NSString *didFailSynsTweetsNotFirstTime;
 extern NSString *didFailSyncOldTweets;
-
 extern NSString *didFailLikeTweet;
 extern NSString *didFailUnLikeTweet;
 extern NSString *didFailRetweet;
 extern NSString *didFailUndoRetweet;
+
+extern NSString *AppDidEnterBackground;
+
 
 @end

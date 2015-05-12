@@ -57,38 +57,40 @@
     
     [self.window addSubview:backgroundView];
     
-    UIView *menuView = [[UIView alloc] initWithFrame:CGRectMake(30, -200, 260, 300)];
-    menuView.backgroundColor = [UIColor colorWithRed:0.271 green:0.231 blue:0.396 alpha:1];
+    CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
+    CGFloat x = (screenWidth - 260) / 2;
+    UIView *menuView = [[UIView alloc] initWithFrame:CGRectMake(x, -200, 260, 400)];
+    menuView.backgroundColor = [UIColor whiteColor];
     [self.window addSubview:menuView];
     
-        UILabel *remaingNumberLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 15, 220, 80)];
-    remaingNumberLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    remaingNumberLabel.numberOfLines = 0;
-    remaingNumberLabel.textColor = [UIColor whiteColor];
-    remaingNumberLabel.font = [UIFont fontWithName:@"Avenir-Roman" size:22];
-    remaingNumberLabel.textAlignment = NSTextAlignmentCenter;
-    remaingNumberLabel.text = [NSString stringWithFormat:@"%lu more pages saved in queue", (unsigned long)self.remainingPageNumber];
-    [menuView addSubview:remaingNumberLabel];
+    UIImageView *thumbnailView = [[UIImageView alloc] initWithFrame:CGRectMake((260 - 100) / 2, 40, 100, 100)];
+    thumbnailView.image = [UIImage imageNamed:@"thumbnail01.png"];
+    [menuView addSubview:thumbnailView];
     
     //add buttons
-    HPButton *pocketButton = [[HPButton alloc] initWithNormalColor:[UIColor colorWithRed:0.902 green:0.278 blue:0.388 alpha:1]
-                                                 hightlightedColor:[UIColor colorWithRed:0.867 green:0.255 blue:0.310 alpha:1]
-                                                             frame:CGRectMake(30, 110, 200, 40)];
+    HPButton *pocketButton = [[HPButton alloc] initWithNormalColor:[UIColor clearColor]
+                                                 hightlightedColor:[UIColor clearColor]
+                                                             frame:CGRectMake(30, 180, 200, 40)];
     
     //pocketButton.layer.cornerRadius = 20;
     pocketButton.clipsToBounds = YES;
     UILabel *pocketButtonLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 40)];
     pocketButtonLabel.textAlignment = NSTextAlignmentCenter;
     pocketButtonLabel.font = [UIFont fontWithName:@"Avenir-Roman" size:18];
-    pocketButtonLabel.textColor = [UIColor whiteColor];
+    pocketButtonLabel.textColor = [UIColor colorWithRed:0.937 green:0.404 blue:0.475 alpha:1];
     pocketButtonLabel.text = @"Save to Pocket";
     [pocketButton addSubview:pocketButtonLabel];
     [pocketButton addTarget:self action:@selector(saveToPocket) forControlEvents:UIControlEventTouchUpInside];
+    pocketButton.layer.cornerRadius = 20;
+    pocketButton.clipsToBounds = YES;
+    pocketButton.layer.borderWidth = 2;
+    pocketButton.layer.borderColor = [[UIColor colorWithRed:0.937 green:0.404 blue:0.475 alpha:1] CGColor];
     [menuView addSubview:pocketButton];
     
-    HPButton *cleanButton = [[HPButton alloc] initWithNormalColor:[UIColor colorWithRed:0.902 green:0.278 blue:0.388 alpha:1]
-                                                hightlightedColor:[UIColor colorWithRed:0.192 green:0.557 blue:0.855 alpha:1]
-                                                            frame:CGRectMake(30, 170, 200, 40)];
+    
+    HPButton *cleanButton = [[HPButton alloc] initWithNormalColor:[UIColor clearColor]
+                                                hightlightedColor:[UIColor clearColor]
+                                                            frame:CGRectMake(30, 240, 200, 40)];
     
     //cleanButton.layer.cornerRadius = 20;
     cleanButton.clipsToBounds = YES;
@@ -96,15 +98,20 @@
     UILabel *cleanButtonLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 40)];
     cleanButtonLabel.textAlignment = NSTextAlignmentCenter;
     cleanButtonLabel.font = [UIFont fontWithName:@"Avenir-Roman" size:18];
-    cleanButtonLabel.textColor = [UIColor whiteColor];
+    cleanButtonLabel.textColor = [UIColor colorWithRed:0.937 green:0.404 blue:0.475 alpha:1];
     cleanButtonLabel.text = @"Reset saved pages";
+    cleanButton.layer.cornerRadius = 20;
+    cleanButton.clipsToBounds = YES;
+    cleanButton.layer.borderWidth = 2;
+    cleanButton.layer.borderColor = [[UIColor colorWithRed:0.937 green:0.404 blue:0.475 alpha:1] CGColor];
+    
     [cleanButton addSubview:cleanButtonLabel];
     [cleanButton addTarget:self action:@selector(removeCachedPages) forControlEvents:UIControlEventTouchUpInside];
     [menuView addSubview:cleanButton];
     
-    HPButton *cancelButton = [[HPButton alloc] initWithNormalColor:[UIColor colorWithRed:0.902 green:0.278 blue:0.388 alpha:1]
-                                                 hightlightedColor:[UIColor colorWithRed:0.192 green:0.557 blue:0.855 alpha:1]
-                                                             frame:CGRectMake(30, 230, 200, 40)];
+    HPButton *cancelButton = [[HPButton alloc] initWithNormalColor:[UIColor clearColor]
+                                                 hightlightedColor:[UIColor clearColor]
+                                                             frame:CGRectMake(30, 300, 200, 40)];
                               
                               
     //cancelButton.layer.cornerRadius = 20;
@@ -113,8 +120,13 @@
     UILabel *cancelButtonLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 40)];
     cancelButtonLabel.textAlignment = NSTextAlignmentCenter;
     cancelButtonLabel.font = [UIFont fontWithName:@"Avenir-Roman" size:18];
-    cancelButtonLabel.textColor = [UIColor whiteColor];
+    cancelButtonLabel.textColor = [UIColor colorWithRed:0.937 green:0.404 blue:0.475 alpha:1];
     cancelButtonLabel.text = @"Cancel";
+    cancelButtonLabel.layer.borderColor = [[UIColor colorWithRed:0.937 green:0.404 blue:0.475 alpha:1] CGColor];
+    cancelButtonLabel.layer.borderWidth = 2;
+    cancelButtonLabel.layer.cornerRadius = 20;
+    cancelButtonLabel.clipsToBounds = YES;
+    
     [cancelButton addSubview:cancelButtonLabel];
     [cancelButton addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
     [menuView addSubview:cancelButton];
@@ -128,7 +140,7 @@
                         options:UIViewAnimationOptionCurveEaseIn
                      animations:^{
         
-                         menuView.frame = CGRectMake(30, 100, 260, 300);
+                         menuView.frame = CGRectMake(x, 100, 260, 400);
                          self.backgroundView.alpha = 0.7;
         
                      } completion:nil];
@@ -137,10 +149,14 @@
 
 - (void)dismissMenu {
     
+    
+    CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
+    CGFloat x = (screenWidth - 260) / 2;
+    
     [UIView animateWithDuration:DISMISS_DURATION animations:^{
         
         self.backgroundView.alpha = 0.0;
-        self.menuView.frame = CGRectMake(30, -300, 260, 300);
+        self.menuView.frame = CGRectMake(x, -400, 260, 400);
         
     } completion:^(BOOL finished) {
         
