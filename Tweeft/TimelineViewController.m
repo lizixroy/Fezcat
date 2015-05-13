@@ -741,7 +741,6 @@ const int LOAD_PAST_TWEET_MARGIN = 4000;
     Tweet *tweet = [self.allTweets objectAtIndex:path.row];
     tweet.isRead = YES;
     [self.tableView reloadRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationNone];
-    
     [self.pageLoader addURLtoWatingQueueWithURL:url tweet:tweet];
     self.cachedPageCounter.text = [NSString stringWithFormat:@"%lu", (unsigned long)self.pageLoader.totalCachedPageNumber];
     

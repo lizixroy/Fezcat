@@ -35,7 +35,7 @@
         label.lineBreakMode = NSLineBreakByWordWrapping;
         label.text = @"Looks like something is wrong, please try again in a minute.";
         [self addSubview:label];
-        self.backgroundColor = [UIColor colorWithRed:0.961 green:0.973 blue:0.980 alpha:1];//[UIColor whiteColor];
+        self.backgroundColor = [UIColor colorWithRed:0.961 green:0.973 blue:0.980 alpha:1];
         
     }
     
