@@ -72,8 +72,6 @@
             
         }
         
-    } else if (self.index == 3) {
-        
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(didFindMultipleAccounts:)
                                                      name:didFindMultipleAccounts
@@ -83,152 +81,144 @@
                                                  selector:@selector(didLogIn)
                                                      name:didLogIn
                                                    object:nil];
+
         
-    }
+    } 
     
 }
 
 - (void)populateContent {
     
+    CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
+    
     if (self.index == 0) {
         
-        UIImageView *loadingPagesView = [[UIImageView alloc] initWithFrame:CGRectMake(90, 130, 140, 220)];
-        [loadingPagesView setImage:[UIImage imageNamed:@"Loading_pages.png"]];
-        [self.view addSubview:loadingPagesView];
         
-        if (!IS_IPHONE_5) {
+        UIImageView *thumbnailView = [[UIImageView alloc] initWithFrame:CGRectMake((screenWidth - 80) / 2, 50, 80, 80)];
+        thumbnailView.image = [UIImage imageNamed:@"walkthrough_thumbnail_a.png"];
+        [self.view addSubview:thumbnailView];
+        
+        if (!IS_IPHONE_4) {
             
-            loadingPagesView.frame = CGRectMake(90, 70, 140, 220);
+            UIImageView *loadingPageView = [[UIImageView alloc] initWithFrame:CGRectMake((screenWidth - 160) / 2, 150, 160, 285)];
+            loadingPageView.image = [UIImage imageNamed:@"loading_page.png"];
+            [self.view addSubview:loadingPageView];
             
         }
-        
-        
-        UILabel *loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, 122, 200)];
-        loadingLabel.textAlignment = NSTextAlignmentCenter;
-        loadingLabel.font = [UIFont fontWithName:@"Avenir-Roman" size:15];
-        loadingLabel.textColor = [UIColor darkGrayColor];
-        loadingLabel.text = @"Loading...";
-        loadingLabel.lineBreakMode = NSLineBreakByWordWrapping;
-        loadingLabel.numberOfLines = 0;
-        [self.scrollView addSubview:loadingLabel];
-    
-        
+
         UILabel *label;
         
-        if (IS_IPHONE_5) {
+        if (IS_IPHONE_4) {
             
-            UILabel *upLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 30, 280, 100)];
-            upLabel.textAlignment = NSTextAlignmentCenter;
-            upLabel.font = [UIFont fontWithName:@"Avenir-Roman" size:20];
-            upLabel.textColor = [UIColor whiteColor];
-            upLabel.text = @"Many tweets have embedded links";
-            upLabel.lineBreakMode = NSLineBreakByWordWrapping;
-            upLabel.numberOfLines = 0;
-            [self.view addSubview:upLabel];
-            
-            label = [[UILabel alloc] initWithFrame:CGRectMake(20, 370, 280, 100)];
+            label = [[UILabel alloc] initWithFrame:CGRectMake(30, 150, screenWidth - 2 * 30, 50)];
             
         } else {
             
-            label = [[UILabel alloc] initWithFrame:CGRectMake(20, 320, 280, 100)];
+            label = [[UILabel alloc] initWithFrame:CGRectMake(30, 480, screenWidth - 2 * 30, 50)];
+            
+        }
+        
+        label.textColor = [UIColor whiteColor];
+        label.font = [UIFont fontWithName:@"Avenir" size:18];
+        label.numberOfLines = 0;
+        label.lineBreakMode = NSLineBreakByWordWrapping;
+        label.text = @"Loading wheel sucks right? How about we see it no more?";
+        label.textAlignment = NSTextAlignmentCenter;
+        [self.view addSubview:label];
+
+        
+    } else if (self.index == 1) {
+        
+        UIImageView *thumbnailView = [[UIImageView alloc] initWithFrame:CGRectMake((screenWidth - 80) / 2, 50, 80, 80)];
+        thumbnailView.image = [UIImage imageNamed:@"walkthrough_thumbnail_b.png"];
+        [self.view addSubview:thumbnailView];
+        
+        if (!IS_IPHONE_4) {
+            
+            UIImageView *loadingPageView = [[UIImageView alloc] initWithFrame:CGRectMake((screenWidth - 224) / 2, 150, 224, 285)];
+            loadingPageView.image = [UIImage imageNamed:@"multi_page.png"];
+            [self.view addSubview:loadingPageView];
+            
+        }
+        
+        UILabel *label;
+        if (IS_IPHONE_5) {
+            
+            label = [[UILabel alloc] initWithFrame:CGRectMake(30, 450, screenWidth - 2 * 30, 80)];
+            
+        } else if (IS_IPHONE_4) {
+            
+            label = [[UILabel alloc] initWithFrame:CGRectMake(30, 150, screenWidth - 2 * 30, 80)];
+            
+        } else {
+            
+            label = [[UILabel alloc] initWithFrame:CGRectMake(30, 480, screenWidth - 2 * 30, 80)];
             
         }
         
         
-        label.textAlignment = NSTextAlignmentCenter;
-        label.font = [UIFont fontWithName:@"Avenir-Roman" size:20];
         label.textColor = [UIColor whiteColor];
-        label.text = @"We click links and stare at loading wheels";
-        label.lineBreakMode = NSLineBreakByWordWrapping;
+        label.font = [UIFont fontWithName:@"Avenir" size:18];
         label.numberOfLines = 0;
-        [self.view addSubview:label];
-        
-    } else if (self.index == 1) {
-        
-        UIImageView *iPhoneCaseView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 70, 150, 315)];
-        [iPhoneCaseView setImage:[UIImage imageNamed:@"iphone_case.png"]];
-        
-        if (!IS_IPHONE_5) {
-            iPhoneCaseView.frame = CGRectMake(20, 40, 150, 315);
-        }
-        
-        [self.view addSubview:iPhoneCaseView];
-        
-        
-        UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(11, 43                                                                              , 130, 230)];
-        scrollView.contentSize = CGSizeMake(130, 2500);
-        scrollView.backgroundColor = [UIColor colorWithRed:0.141 green:0.608 blue:0.843 alpha:1];
-        
-        [iPhoneCaseView addSubview:scrollView];
-        
-        UIView *contentView = [self createContentView];
-        UIView *contentView_b = [self createContentView];
-        contentView.frame = CGRectMake(0, 0, 131, 1000);
-        contentView_b.frame = CGRectMake(0, 1000, 131, 1000);
-        
-        [scrollView addSubview:contentView];
-        [scrollView addSubview:contentView_b];
-        self.scrollView = scrollView;
-        
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 400, 300, 100)];
-        
-        if (!IS_IPHONE_5) {
-            label.frame = CGRectMake(10, 350, 300, 100);
-        }
-        
+        label.lineBreakMode = NSLineBreakByWordWrapping;
+        label.text = @"Tweeft loads your pages silently while you keep scrolling your timeline.";
         label.textAlignment = NSTextAlignmentCenter;
-        label.textColor  = [UIColor whiteColor];
-        label.font = [UIFont fontWithName:@"Avenir-Roman" size:20];
-        label.lineBreakMode = NSLineBreakByWordWrapping;
-        label.numberOfLines = 0;
-        label.text = @"Tweeft loads pages silently while you scrolling timeline";
-        
         [self.view addSubview:label];
-        [self addLoadingPages];
+
         
     } else if (self.index == 2) {
         
-        [super viewDidLoad];
-        // Do any additional setup after loading the view.
+        UIImageView *thumbnailView = [[UIImageView alloc] initWithFrame:CGRectMake((screenWidth - 80) / 2, 50, 80, 80)];
+        thumbnailView.image = [UIImage imageNamed:@"walkthrough_thumbnail_c.png"];
+        [self.view addSubview:thumbnailView];
         
-        self.view.backgroundColor = [UIColor colorWithRed:0.980 green:0.353 blue:0.396 alpha:1];
-        
-        UIImageView *iPhoneView = [[UIImageView alloc] initWithFrame:CGRectMake(90, 100, 140, 300)];
-        [iPhoneView setImage:[UIImage imageNamed:@"iphone_case.png"]];
-        
-        if (!IS_IPHONE_5) {
-            iPhoneView.frame = CGRectMake(90, 40, 140, 300);
-        }
-        
-        [self.view addSubview:iPhoneView];
-        
-        UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(10, 40, 122, 220)];
-        scrollView.contentSize = CGSizeMake(191 * 2, 330);
-        scrollView.backgroundColor = [UIColor blackColor];
-        [iPhoneView addSubview:scrollView];
-        self.scrollView = scrollView;
-        
-        UIImageView *tweetView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 122, 220)];
-        [tweetView setImage:[UIImage imageNamed:@"tweet.png"]];
-        [self.scrollView addSubview:tweetView];
-        
-        self.pageView = [[UIView alloc] initWithFrame:CGRectMake(122, 0, 122, 220)];
-        self.pageView.backgroundColor = [UIColor colorWithRed:0.141 green:0.608 blue:0.843 alpha:1];
-        [self.scrollView addSubview:self.pageView];
-        
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, 400, 280, 100)];
-        
-        if (!IS_IPHONE_5) {
-            label.frame = CGRectMake(20, 350, 280, 100);
-        }
-        
-        label.textAlignment = NSTextAlignmentCenter;
-        label.font = [UIFont fontWithName:@"Avenir-Roman" size:20];
+        UILabel *label;
+        label = [[UILabel alloc] initWithFrame:CGRectMake(30, 150, screenWidth - 2 * 30, 180)];
         label.textColor = [UIColor whiteColor];
-        label.text = @"When pages ready swipe right to view them.";
-        label.lineBreakMode = NSLineBreakByWordWrapping;
+        label.font = [UIFont fontWithName:@"Avenir" size:18];
         label.numberOfLines = 0;
+        label.lineBreakMode = NSLineBreakByWordWrapping;
+        label.text = @"Many people, like you and I, are using Twitter as the primary source of news. It’s how we interprete and engage the world.\n\nTweeft makes this process far more continuous.";
         [self.view addSubview:label];
+        
+        HPButton *signInButton;
+        
+        if (IS_IPHONE_5) {
+            
+            signInButton = [[HPButton alloc] initWithNormalColor:[UIColor colorWithRed:0.298 green:0.667 blue:0.957 alpha:1]
+                                               hightlightedColor:[UIColor colorWithRed:0.216 green:0.541 blue:0.800 alpha:1]
+                                                           frame:CGRectMake(40, 400, (screenWidth - 40) / 2, 40)];
+            
+        } else {
+            
+            signInButton = [[HPButton alloc] initWithNormalColor:[UIColor colorWithRed:0.298 green:0.667 blue:0.957 alpha:1]
+                                               hightlightedColor:[UIColor colorWithRed:0.216 green:0.541 blue:0.800 alpha:1]
+                                                           frame:CGRectMake(40, 380, 240, 40)];
+            
+            
+        }
+        
+        signInButton = [[HPButton alloc] initWithNormalColor:[UIColor colorWithRed:0.298 green:0.667 blue:0.957 alpha:1]
+                                           hightlightedColor:[UIColor colorWithRed:0.216 green:0.541 blue:0.800 alpha:1]
+                                                       frame:CGRectMake((screenWidth - 240) / 2, 400, 240, 40)];
+
+        
+        signInButton.layer.cornerRadius = 20;
+        signInButton.clipsToBounds = YES;
+        
+        UIImageView *twitterLogoView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 8, 30, 25)];
+        [twitterLogoView setImage:[UIImage imageNamed:@"twitter_logo.png"]];
+        [signInButton addSubview:twitterLogoView];
+        UILabel *signInLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 5, 160, 30)];
+        signInLabel.textColor = [UIColor whiteColor];
+        signInLabel.font = [UIFont fontWithName:@"Avenir-Roman" size:18];
+        signInLabel.text = @"Sign in with Twitter";
+        signInLabel.textAlignment = NSTextAlignmentLeft;
+        [signInButton addSubview:signInLabel];
+        [signInButton addTarget:self action:@selector(signInWithTwitter) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:signInButton];
+
+
         
     } else {
         
@@ -270,13 +260,10 @@
         [signInButton addSubview:twitterLogoView];
         
         UILabel *signInLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 5, 160, 30)];
-        
-        
-        
         signInLabel.textColor = [UIColor whiteColor];
         signInLabel.font = [UIFont fontWithName:@"Avenir-Roman" size:18];
         signInLabel.text = @"Sign in with Twitter";
-        signInLabel.textAlignment = NSTextAlignmentCenter;
+        signInLabel.textAlignment = NSTextAlignmentLeft;
         [signInButton addSubview:signInLabel];
         
         [signInButton addTarget:self action:@selector(signInWithTwitter) forControlEvents:UIControlEventTouchUpInside];
@@ -372,11 +359,8 @@
 
 - (void)signInWithTwitter {
     
-    NSLog(@"Signing in");
-    
+    NSLog(@"Signing in");    
     [[TwitterManager sharedObject] signin];
-    
-    //[self.parentViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
     
 }
 

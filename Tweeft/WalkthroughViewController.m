@@ -46,19 +46,17 @@
     self.pageController.view.backgroundColor = [UIColor colorWithRed:0.980 green:0.353 blue:0.396 alpha:1];
     
     UIPageControl *pageControl = [UIPageControl appearance];
-    pageControl.numberOfPages = 4;
+    pageControl.numberOfPages = 3;
     pageControl.currentPage = 0;
     pageControl.pageIndicatorTintColor = [UIColor colorWithRed:0.231 green:0.227 blue:0.396 alpha:1];
-        
-    if (IS_IPHONE_5) {
-        
-        self.pageController.view.frame = CGRectMake(0, 0, 320, 568);
-        
-    } else {
-        
-        self.pageController.view.frame = CGRectMake(0, 0, 320, 480);
-        
-    }
+    pageControl.currentPageIndicatorTintColor = [UIColor yellowColor];
+    
+    
+    CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
+    CGFloat screenHeight = [[UIScreen mainScreen] bounds].size.height;
+    
+    self.pageController.view.frame = CGRectMake(0, 0, screenWidth, screenHeight);
+
     
     [self addChildViewController:self.pageController];
     [self.view addSubview:self.pageController.view];
@@ -88,7 +86,7 @@
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
     
     NSUInteger index = [(WalkthroughViewController *)viewController index];
-    if (index == 3) {
+    if (index == 2) {
         return nil;
     }
     index++;
@@ -99,13 +97,13 @@
 
 - (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController {
     
-    return 4;
+    return 3;
     
 }
 
 - (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController {
     
-    return 4;
+    return 3;
     
 }
 
@@ -114,6 +112,12 @@
     WalkthroughChildViewController *vc = [[WalkthroughChildViewController alloc] init];
     vc.index = index;
     return vc;
+    
+}
+
+- (void)dealloc {
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     
 }
 
