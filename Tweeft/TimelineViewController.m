@@ -49,7 +49,7 @@ typedef enum ScorllDirection {
 @property (nonatomic, strong) NSIndexPath *indexPath;
 @property (nonatomic, strong) UIAlertView *actionFailedAlert;
 @property (nonatomic, strong) UIImage *currentSavingImage;
-
+@property (nonatomic, strong) NSString *copyingText;
 
 @end
 
@@ -222,8 +222,9 @@ const int LOAD_PAST_TWEET_MARGIN = 4000;
 {
     
     TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"tweetCell" forIndexPath:indexPath];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.delegate  = self;
     
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     Tweet *tweet = [self.allTweets objectAtIndex:indexPath.row];
     
     [cell constructCellWithTweet:tweet Cell:cell];
@@ -763,6 +764,35 @@ const int LOAD_PAST_TWEET_MARGIN = 4000;
     
     //release cached resources to give back memory to system.
     [self.twiterManager cleanCache];
+    
+}
+
+- (void)pressedCell:(UITableViewCell *)cell {
+    
+    CGPoint position = [cell convertPoint:CGPointZero toView:self.tableView];
+    NSIndexPath *path = [self.tableView indexPathForRowAtPoint:position];
+    Tweet *tweet = [self.allTweets objectAtIndex:path.row];
+    NSString *text = [NSString stringWithFormat:@"@%@ %@%@", tweet.screen_name ,tweet.text, @"\nTweeft - a swift tweets browser"];
+    self.copyingText = text;
+    [self showCopyAlert];
+    
+}
+
+- (void)showCopyAlert {
+    
+    UIAlertController *controller = [UIAlertController alertControllerWithTitle:nil
+                                                                        message:nil
+                                                                 preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *copyAction = [UIAlertAction actionWithTitle:@"Copy tweet" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        
+        UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+        pasteboard.string = self.copyingText;
+        
+    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+    [controller addAction:copyAction];
+    [controller addAction:cancelAction];
+    [self presentViewController:controller animated:YES completion:nil];
     
 }
 

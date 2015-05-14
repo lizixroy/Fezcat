@@ -14,7 +14,7 @@
 @property (nonatomic, strong) NSString *user_name;
 @property (nonatomic, strong) NSString *user_thumbnail_url;
 @property (nonatomic, strong) NSString *user_id;
-
+@property (nonatomic, strong) NSString *screen_name;
 @property (nonatomic, strong) NSString *text;
 @property (nonatomic, assign) NSUInteger *retweet_count;
 @property (nonatomic, assign) BOOL favorited;

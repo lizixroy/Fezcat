@@ -18,10 +18,23 @@
 
         [self addUserNameLabel];
         [self addSeperator];
+        
+        UILongPressGestureRecognizer *recognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressed:)];
+        [self.contentView addGestureRecognizer:recognizer];
       
     }
 
     return self;
+}
+
+- (void)longPressed:(UILongPressGestureRecognizer *)gesture {
+    
+    if (gesture.state == UIGestureRecognizerStateBegan) {
+        
+        [self.delegate pressedCell:self];
+        
+    }
+    
 }
 
 -(void)addUserThumbnailView {

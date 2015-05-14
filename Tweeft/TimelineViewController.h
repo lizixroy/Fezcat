@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "TTTAttributedLabel.h"
+#import "TweetCell.h"
 
 @class PageLoader;
 
-@interface TimelineViewController : UITableViewController<UITableViewDelegate, UITableViewDataSource, TTTAttributedLabelDelegate, UIActionSheetDelegate>
+@interface TimelineViewController : UITableViewController<UITableViewDelegate, UITableViewDataSource, TTTAttributedLabelDelegate, UIActionSheetDelegate, TweetCellDelegate>
 
 @property (nonatomic, strong) PageLoader* pageLoader;
 

@@ -10,6 +10,12 @@
 #import "TTTAttributedLabel.h"
 #import "Tweet.h"
 
+@protocol TweetCellDelegate <NSObject>
+
+- (void)pressedCell:(UITableViewCell *)cell;
+
+@end
+
 @interface TweetCell : UITableViewCell
 
 @property (nonatomic, strong) UIImageView *userThumbnail;
@@ -21,9 +27,9 @@
 @property (nonatomic, strong) UIButton *likeButton;
 @property (nonatomic, strong) UIImageView *retweetImg;
 @property (nonatomic, strong) UIImageView *favoriteImg;
+@property (nonatomic, weak) id<TweetCellDelegate> delegate;
 
 -(void)addUserThumbnailView;
--(void)addTextLabel;
-
 -(void)constructCellWithTweet:(Tweet *)tweet Cell:(TweetCell *)cell;
+
 @end
