@@ -173,7 +173,7 @@
         [self.view addSubview:thumbnailView];
         
         UILabel *label;
-        label = [[UILabel alloc] initWithFrame:CGRectMake(30, 150, screenWidth - 2 * 30, 180)];
+        label = [[UILabel alloc] initWithFrame:CGRectMake(30, 150, screenWidth - 2 * 30, 200)];
         label.textColor = [UIColor whiteColor];
         label.font = [UIFont fontWithName:@"Avenir" size:18];
         label.numberOfLines = 0;
@@ -182,22 +182,6 @@
         [self.view addSubview:label];
         
         HPButton *signInButton;
-        
-        if (IS_IPHONE_5) {
-            
-            signInButton = [[HPButton alloc] initWithNormalColor:[UIColor colorWithRed:0.298 green:0.667 blue:0.957 alpha:1]
-                                               hightlightedColor:[UIColor colorWithRed:0.216 green:0.541 blue:0.800 alpha:1]
-                                                           frame:CGRectMake(40, 400, (screenWidth - 40) / 2, 40)];
-            
-        } else {
-            
-            signInButton = [[HPButton alloc] initWithNormalColor:[UIColor colorWithRed:0.298 green:0.667 blue:0.957 alpha:1]
-                                               hightlightedColor:[UIColor colorWithRed:0.216 green:0.541 blue:0.800 alpha:1]
-                                                           frame:CGRectMake(40, 380, 240, 40)];
-            
-            
-        }
-        
         signInButton = [[HPButton alloc] initWithNormalColor:[UIColor colorWithRed:0.298 green:0.667 blue:0.957 alpha:1]
                                            hightlightedColor:[UIColor colorWithRed:0.216 green:0.541 blue:0.800 alpha:1]
                                                        frame:CGRectMake((screenWidth - 240) / 2, 400, 240, 40)];
@@ -218,57 +202,6 @@
         [signInButton addTarget:self action:@selector(signInWithTwitter) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:signInButton];
 
-
-        
-    } else {
-        
-        UIImageView *loadingPagesView = [[UIImageView alloc] initWithFrame:CGRectMake(90, 100, 140, 220)];
-        [loadingPagesView setImage:[UIImage imageNamed:@"Loading_pages_2.png"]];
-        [self.view addSubview:loadingPagesView];
-        
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, 300, 280, 100)];
-        label.textAlignment = NSTextAlignmentCenter;
-        label.font = [UIFont fontWithName:@"Avenir-Roman" size:20];
-        label.textColor = [UIColor whiteColor];
-        label.text = @"Let's save time";
-        label.lineBreakMode = NSLineBreakByWordWrapping;
-        label.numberOfLines = 0;
-        [self.view addSubview:label];
-        
-        HPButton *signInButton;
-        
-        if (IS_IPHONE_5) {
-            
-           signInButton = [[HPButton alloc] initWithNormalColor:[UIColor colorWithRed:0.298 green:0.667 blue:0.957 alpha:1]
-                                              hightlightedColor:[UIColor colorWithRed:0.216 green:0.541 blue:0.800 alpha:1]
-                                                          frame:CGRectMake(40, 400, 240, 40)];
-            
-        } else {
-            
-            signInButton = [[HPButton alloc] initWithNormalColor:[UIColor colorWithRed:0.298 green:0.667 blue:0.957 alpha:1]
-                                               hightlightedColor:[UIColor colorWithRed:0.216 green:0.541 blue:0.800 alpha:1]
-                                                           frame:CGRectMake(40, 380, 240, 40)];
-            
-            
-        }
-        
-        signInButton.layer.cornerRadius = 20;
-        signInButton.clipsToBounds = YES;
-        
-        UIImageView *twitterLogoView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 8, 30, 25)];
-        [twitterLogoView setImage:[UIImage imageNamed:@"twitter_logo.png"]];
-        [signInButton addSubview:twitterLogoView];
-        
-        UILabel *signInLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 5, 160, 30)];
-        signInLabel.textColor = [UIColor whiteColor];
-        signInLabel.font = [UIFont fontWithName:@"Avenir-Roman" size:18];
-        signInLabel.text = @"Sign in with Twitter";
-        signInLabel.textAlignment = NSTextAlignmentLeft;
-        [signInButton addSubview:signInLabel];
-        
-        [signInButton addTarget:self action:@selector(signInWithTwitter) forControlEvents:UIControlEventTouchUpInside];
-        
-        [self.view addSubview:signInButton];
         
     }
     
