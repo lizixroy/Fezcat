@@ -372,6 +372,8 @@ const NSUInteger LOAD_TWEET_BATCH_NUMBER = 40;
  */
 - (void)convertTweets:(id)responseObject type:(BOOL)shouldSetNewestId {
     
+    NSLog(@"%@", responseObject);
+    
     self.tweets = nil;
     
     NSAssert(responseObject != nil, @"Response object should not be nil");
@@ -386,6 +388,17 @@ const NSUInteger LOAD_TWEET_BATCH_NUMBER = 40;
         tweet.user_name = [[tweetDictionary objectForKey:@"user"] objectForKey:@"name"];
         tweet.user_id = [[tweetDictionary objectForKey:@"user"] objectForKey:@"id_str"];
         tweet.screen_name = [[tweetDictionary objectForKey:@"user"] objectForKey:@"screen_name"];
+        tweet.text = [tweetDictionary objectForKey:@"text"];
+
+        NSDictionary *retweetedStatus = [tweetDictionary objectForKey:@"retweeted_status"];
+        if (retweetedStatus != nil) {
+            
+            NSString *untruncatedTweet = [retweetedStatus objectForKey:@"text"];
+            NSString *screenName = [[retweetedStatus objectForKey:@"user"] objectForKey:@"screen_name"];
+            NSString *text = [NSString stringWithFormat:@"RT @%@: %@", screenName, untruncatedTweet];
+            tweet.text = text;
+            
+        }
         
         NSNumber *retweeted = [tweetDictionary objectForKey:@"retweeted"];
         if ([retweeted isEqualToNumber:[NSNumber numberWithInt:0]]) {
@@ -408,27 +421,17 @@ const NSUInteger LOAD_TWEET_BATCH_NUMBER = 40;
         }
         
         
-        tweet.text = [tweetDictionary objectForKey:@"text"];
-        
-        
         if ([tweetDictionary objectForKey:@"entities"] != nil) {
             
             if ([[tweetDictionary objectForKey:@"entities"] objectForKey:@"media"] != nil) {
                 
                 NSArray *medias = [[tweetDictionary objectForKey:@"entities"] objectForKey:@"media"];
                 NSDictionary *media =[medias objectAtIndex:0];
-                
                 tweet.media_url = [media objectForKey:@"media_url"];
-                
                 CGFloat height = [[[[media objectForKey:@"sizes"] objectForKey:@"medium"] objectForKey:@"h"] floatValue] ;
                 CGFloat width = [[[[media objectForKey:@"sizes"] objectForKey:@"medium"] objectForKey:@"w"] floatValue] ;
-                
                 tweet.media_image_height = height;
                 tweet.media_image_width = width;
-                
-                NSArray *indices = [media objectForKey:@"indices"];
-                NSNumber *first_index = [indices objectAtIndex:0];
-                tweet.text = [self trimText:tweet.text fromIndex:first_index.integerValue];
                 
             }
             
