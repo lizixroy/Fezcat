@@ -61,7 +61,6 @@
 		D65E6F7D19A2B4F000F7ECA2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D65E6F7C19A2B4F000F7ECA2 /* main.m */; };
 		D65E6F8119A2B4F000F7ECA2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D65E6F8019A2B4F000F7ECA2 /* AppDelegate.m */; };
 		D65E6F8419A2B4F000F7ECA2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D65E6F8219A2B4F000F7ECA2 /* Main.storyboard */; };
-		D65E6F8719A2B4F000F7ECA2 /* TweetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D65E6F8619A2B4F000F7ECA2 /* TweetsViewController.m */; };
 		D65E6F8919A2B4F000F7ECA2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D65E6F8819A2B4F000F7ECA2 /* Images.xcassets */; };
 		D65E6F9019A2B4F000F7ECA2 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D65E6F8F19A2B4F000F7ECA2 /* XCTest.framework */; };
 		D65E6F9119A2B4F000F7ECA2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D65E6F7019A2B4F000F7ECA2 /* Foundation.framework */; };
@@ -195,8 +194,6 @@
 		D65E6F7F19A2B4F000F7ECA2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D65E6F8019A2B4F000F7ECA2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		D65E6F8319A2B4F000F7ECA2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		D65E6F8519A2B4F000F7ECA2 /* TweetsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TweetsViewController.h; sourceTree = "<group>"; };
-		D65E6F8619A2B4F000F7ECA2 /* TweetsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TweetsViewController.m; sourceTree = "<group>"; };
 		D65E6F8819A2B4F000F7ECA2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D65E6F8E19A2B4F000F7ECA2 /* TweeftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TweeftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D65E6F8F19A2B4F000F7ECA2 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -437,8 +434,6 @@
 		D65E6FA919A2B5A400F7ECA2 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				D65E6F8519A2B4F000F7ECA2 /* TweetsViewController.h */,
-				D65E6F8619A2B4F000F7ECA2 /* TweetsViewController.m */,
 				D65E6FAA19A2B5DB00F7ECA2 /* BaseViewController.h */,
 				D65E6FAB19A2B5DB00F7ECA2 /* BaseViewController.m */,
 				D65E6FB819A2C2C300F7ECA2 /* WebPageViewController.h */,
@@ -829,7 +824,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DDD5D1AA19AA8EDC00A7A59B /* PlaceholderView.m in Sources */,
-				D65E6F8719A2B4F000F7ECA2 /* TweetsViewController.m in Sources */,
 				DD77B65619A423D800FAFB10 /* TimelineViewController.m in Sources */,
 				B0B3D1CD1B01B1F500D6A5F4 /* TFBrowseRecord.swift in Sources */,
 				DD61540319A59E5E00F52760 /* TTTAttributedLabel.m in Sources */,

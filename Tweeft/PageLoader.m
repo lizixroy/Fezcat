@@ -115,12 +115,7 @@
     [self updateDummyViewIndex];
     [dummyView addSubview:webView];
     [self.loadedWebviewQueue addObject:webView];
-    
-    TFBrowserRecordManager *m = [[TFBrowserRecordManager alloc] init];
-    [m createRecordWithTweeft:tweet];
-    
-    NSLog(@"Now there are %lu pages in queue", (unsigned long)self.loadedWebviewQueue.count);
-    
+        
     if (!self.pageAvailable) {
         
         [[NSNotificationCenter defaultCenter] postNotificationName:pageDidBecomeAvailable object:nil];
