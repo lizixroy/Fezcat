@@ -17,7 +17,6 @@
 #import "URBMediaFocusViewController.h"
 #import "BottomCell.h"
 #import "WalkthroughViewController.h"
-#import "TTutorial.h"
 #import "LoadingView.h"
 #import "PlaceholderView.h"
 #import "DefaultManager.h"
@@ -43,7 +42,6 @@ typedef enum ScorllDirection {
 @property (nonatomic) BOOL isLoading;
 @property (nonatomic) Scroll_direction scrollDirection;
 @property (nonatomic) NSInteger lastContentOffset;
-@property (nonatomic, strong) TTutorial *tutorial;
 @property (nonatomic, strong) LoadingView *loadingView;
 @property (nonatomic, strong) PlaceholderView *placeholder;
 @property (nonatomic, strong) NSIndexPath *indexPath;
@@ -74,7 +72,7 @@ const int LOAD_PAST_TWEET_MARGIN = 4000;
 {
     [super viewDidLoad];
     
-    self.navigationItem.title = @"Tweeft";
+    self.navigationItem.title = @"Fezcat";
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = [UIColor colorWithRed:0.961 green:0.973 blue:0.980 alpha:1];
     
@@ -176,6 +174,7 @@ const int LOAD_PAST_TWEET_MARGIN = 4000;
         
         [[TwitterManager sharedObject] fetchNewTweets];
         
+        
     }
     
     self.isLoading = NO;
@@ -189,10 +188,28 @@ const int LOAD_PAST_TWEET_MARGIN = 4000;
     DefaultManager *defaultManager = [[DefaultManager alloc] init];
     if (![defaultManager isTutorialShowed]) {
         
-        self.tutorial = [[TTutorial alloc] initWithTutorialType:TTutorial_URL];
-        [self.tutorial show];
+        [self showMainTutorialAlert];        
         
     }
+    
+}
+
+- (void)showMainTutorialAlert {
+    
+    UIAlertController *ac = [UIAlertController alertControllerWithTitle:@"Thanks for trying out Fezcat" message:@"Informative tweets come with embedded with URLs. Click one." preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
+    [ac addAction:action];
+    [self presentViewController:ac animated:YES completion:nil];
+    
+}
+
+- (void)showScrollTutorialAlert {
+    
+    UIAlertController *ac = [UIAlertController alertControllerWithTitle:@"Don't wait!" message:@"Keep scrolling the timeline while Fezcat is loading page for you. After a few seconds scroll to the right to reveal riady-to-view page." preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
+    [ac addAction:action];
+    [self presentViewController:ac animated:YES completion:nil];
+
     
 }
 
@@ -731,8 +748,7 @@ const int LOAD_PAST_TWEET_MARGIN = 4000;
     DefaultManager *defaultManager = [[DefaultManager alloc] init];
     if (![defaultManager isTutorialShowed]) {
         
-        self.tutorial = [[TTutorial alloc] initWithTutorialType:TTutorial_main];
-        [self.tutorial show];
+        [self showScrollTutorialAlert];
         [defaultManager setTutorialIsShowed:YES];
         
     }
@@ -772,7 +788,7 @@ const int LOAD_PAST_TWEET_MARGIN = 4000;
     CGPoint position = [cell convertPoint:CGPointZero toView:self.tableView];
     NSIndexPath *path = [self.tableView indexPathForRowAtPoint:position];
     Tweet *tweet = [self.allTweets objectAtIndex:path.row];
-    NSString *text = [NSString stringWithFormat:@"@%@ %@%@", tweet.screen_name ,tweet.text, @"\nTweeft - a swift tweets browser"];
+    NSString *text = [NSString stringWithFormat:@"@%@ %@%@", tweet.screen_name ,tweet.text, @"\nFezcat - a smooth tweets browser"];
     self.copyingText = text;
     [self showCopyAlert];
     

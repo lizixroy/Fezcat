@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B01FFDD11B06C98100EC5855 /* fezcat_long.png in Resources */ = {isa = PBXBuildFile; fileRef = B01FFDD01B06C98100EC5855 /* fezcat_long.png */; };
 		B07B394A1AFB10D400DAA5DC /* category_menu.png in Resources */ = {isa = PBXBuildFile; fileRef = B07B39471AFB10D400DAA5DC /* category_menu.png */; };
 		B07B394B1AFB10D400DAA5DC /* category_menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B07B39481AFB10D400DAA5DC /* category_menu@2x.png */; };
 		B07B394C1AFB10D400DAA5DC /* category_menu@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B07B39491AFB10D400DAA5DC /* category_menu@3x.png */; };
+		B07C32951B06BD4A004FDE67 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B07C32941B06BD4A004FDE67 /* Launch Screen.xib */; };
 		B09261771B0449E600554D8C /* walkthrough_thumbnail_a.png in Resources */ = {isa = PBXBuildFile; fileRef = B09261741B0449E600554D8C /* walkthrough_thumbnail_a.png */; };
 		B09261781B0449E600554D8C /* walkthrough_thumbnail_a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B09261751B0449E600554D8C /* walkthrough_thumbnail_a@2x.png */; };
 		B09261791B0449E600554D8C /* walkthrough_thumbnail_a@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B09261761B0449E600554D8C /* walkthrough_thumbnail_a@3x.png */; };
@@ -133,9 +135,11 @@
 /* Begin PBXFileReference section */
 		36DA93C8715E4C48D2D86232 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		4F4FB76F1058DB729B821DDC /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		B01FFDD01B06C98100EC5855 /* fezcat_long.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fezcat_long.png; sourceTree = "<group>"; };
 		B07B39471AFB10D400DAA5DC /* category_menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = category_menu.png; sourceTree = "<group>"; };
 		B07B39481AFB10D400DAA5DC /* category_menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "category_menu@2x.png"; sourceTree = "<group>"; };
 		B07B39491AFB10D400DAA5DC /* category_menu@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "category_menu@3x.png"; sourceTree = "<group>"; };
+		B07C32941B06BD4A004FDE67 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		B09261741B0449E600554D8C /* walkthrough_thumbnail_a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = walkthrough_thumbnail_a.png; sourceTree = "<group>"; };
 		B09261751B0449E600554D8C /* walkthrough_thumbnail_a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "walkthrough_thumbnail_a@2x.png"; sourceTree = "<group>"; };
 		B09261761B0449E600554D8C /* walkthrough_thumbnail_a@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "walkthrough_thumbnail_a@3x.png"; sourceTree = "<group>"; };
@@ -183,7 +187,7 @@
 		D632410D19A42CC100F7A469 /* TMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMenu.h; sourceTree = "<group>"; };
 		D632410E19A42CC100F7A469 /* TMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMenu.m; sourceTree = "<group>"; };
 		D632411019A4382700F7A469 /* white_tweeft_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "white_tweeft_logo@2x.png"; sourceTree = "<group>"; };
-		D65E6F6D19A2B4F000F7ECA2 /* Tweeft.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tweeft.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D65E6F6D19A2B4F000F7ECA2 /* Fezcat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fezcat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D65E6F7019A2B4F000F7ECA2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D65E6F7219A2B4F000F7ECA2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		D65E6F7419A2B4F000F7ECA2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -345,7 +349,7 @@
 		D65E6F6E19A2B4F000F7ECA2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D65E6F6D19A2B4F000F7ECA2 /* Tweeft.app */,
+				D65E6F6D19A2B4F000F7ECA2 /* Fezcat.app */,
 				D65E6F8E19A2B4F000F7ECA2 /* TweeftTests.xctest */,
 			);
 			name = Products;
@@ -400,6 +404,7 @@
 				D65E6F7919A2B4F000F7ECA2 /* InfoPlist.strings */,
 				D65E6F7C19A2B4F000F7ECA2 /* main.m */,
 				D65E6F7E19A2B4F000F7ECA2 /* Tweeft-Prefix.pch */,
+				B07C32941B06BD4A004FDE67 /* Launch Screen.xib */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -475,6 +480,7 @@
 		D65E6FB119A2BA1B00F7ECA2 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				B01FFDD01B06C98100EC5855 /* fezcat_long.png */,
 				B092618C1B04547D00554D8C /* walkthrough_thumbnail_c.png */,
 				B092618D1B04547D00554D8C /* walkthrough_thumbnail_c@2x.png */,
 				B092618E1B04547D00554D8C /* walkthrough_thumbnail_c@3x.png */,
@@ -632,7 +638,7 @@
 			);
 			name = Tweeft;
 			productName = Tweeft;
-			productReference = D65E6F6D19A2B4F000F7ECA2 /* Tweeft.app */;
+			productReference = D65E6F6D19A2B4F000F7ECA2 /* Fezcat.app */;
 			productType = "com.apple.product-type.application";
 		};
 		D65E6F8D19A2B4F000F7ECA2 /* TweeftTests */ = {
@@ -670,7 +676,7 @@
 					};
 				};
 			};
-			buildConfigurationList = D65E6F6819A2B4F000F7ECA2 /* Build configuration list for PBXProject "Tweeft" */;
+			buildConfigurationList = D65E6F6819A2B4F000F7ECA2 /* Build configuration list for PBXProject "Fezcat" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -712,6 +718,7 @@
 				D6D29F5B19A99A71003D8BAD /* iphone_case@2x.png in Resources */,
 				D632410719A422CE00F7A469 /* menu@2x.png in Resources */,
 				D6E5740419AC27520052222B /* tutorial_main@2x.png in Resources */,
+				B01FFDD11B06C98100EC5855 /* fezcat_long.png in Resources */,
 				D63240EF19A3CE2E00F7A469 /* handle_available@2x.png in Resources */,
 				B0B3D1E11B0295C400D6A5F4 /* thumbnail01@2x.png in Resources */,
 				B09261851B044EF600554D8C /* walkthrough_thumbnail_b@3x.png in Resources */,
@@ -723,6 +730,7 @@
 				B07B394B1AFB10D400DAA5DC /* category_menu@2x.png in Resources */,
 				B092618A1B044F9F00554D8C /* multi_page@2x.png in Resources */,
 				D63240F919A3FE2400F7A469 /* placeholder@2x.png in Resources */,
+				B07C32951B06BD4A004FDE67 /* Launch Screen.xib in Resources */,
 				B0FC15631B02AF0E005A15D0 /* thumbnail03@3x.png in Resources */,
 				D6E573FC19AB7C3C0052222B /* tutorial_url@2x.png in Resources */,
 				D65E6F8919A2B4F000F7ECA2 /* Images.xcassets in Resources */,
@@ -993,7 +1001,7 @@
 				GCC_PREFIX_HEADER = "Tweeft/Tweeft-Prefix.pch";
 				INFOPLIST_FILE = "Tweeft/Tweeft-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Fezcat;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Tweeft/Tweeft-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1019,7 +1027,7 @@
 				GCC_PREFIX_HEADER = "Tweeft/Tweeft-Prefix.pch";
 				INFOPLIST_FILE = "Tweeft/Tweeft-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Fezcat;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Tweeft/Tweeft-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
@@ -1069,7 +1077,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D65E6F6819A2B4F000F7ECA2 /* Build configuration list for PBXProject "Tweeft" */ = {
+		D65E6F6819A2B4F000F7ECA2 /* Build configuration list for PBXProject "Fezcat" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D65E6F9D19A2B4F000F7ECA2 /* Debug */,

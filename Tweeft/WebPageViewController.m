@@ -75,7 +75,7 @@
     //release cached web pages
     [self.pageLoader releaseCachedPages];
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Memory of your device is under pressure." message:@" Tweeft released all the cached pages and will reload them once you add new page" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Memory of your device is under pressure." message:@" Fezcat released all the cached pages and will reload them once you add new page" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [alert show];
     
 }

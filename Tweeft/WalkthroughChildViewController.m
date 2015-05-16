@@ -161,7 +161,7 @@
         label.font = [UIFont fontWithName:@"Avenir" size:18];
         label.numberOfLines = 0;
         label.lineBreakMode = NSLineBreakByWordWrapping;
-        label.text = @"Tweeft loads your pages silently while you keep scrolling your timeline.";
+        label.text = @"Fezcat loads your pages silently while you keep scrolling your timeline.";
         label.textAlignment = NSTextAlignmentCenter;
         [self.view addSubview:label];
 
@@ -178,7 +178,7 @@
         label.font = [UIFont fontWithName:@"Avenir" size:18];
         label.numberOfLines = 0;
         label.lineBreakMode = NSLineBreakByWordWrapping;
-        label.text = @"Many people, like you and I, are using Twitter as the primary source of news. It’s how we interprete and engage the world.\n\nTweeft makes this process far more continuous.";
+        label.text = @"Many people, like you and I, are using Twitter as the primary source of news. It’s how we interprete and engage the world.\n\nFezcat makes this process far more continuous.";
         [self.view addSubview:label];
         
         HPButton *signInButton;

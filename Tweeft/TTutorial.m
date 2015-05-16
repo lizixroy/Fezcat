@@ -40,6 +40,19 @@
     
 }
 
+- (void)showMainTutorialAlert {
+    
+    UIAlertController *ac = [UIAlertController alertControllerWithTitle:@"Thanks for trying out Fezcat" message:@"Informative tweets come with embedded with URLs. Click one." preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
+    [ac addAction:action];
+    
+}
+
+- (void)showLoadingTutorialAlert {
+    
+    
+}
+
 - (void)dismiss {
     
     self.window = nil;

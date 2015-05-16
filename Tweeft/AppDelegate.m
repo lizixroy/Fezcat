@@ -20,7 +20,7 @@
     
     [[PocketAPI sharedAPI] setConsumerKey:@"31160-6f0085e8ae7296b4b152f1b2"];    
     [[UINavigationBar appearance] setTitleTextAttributes:@{
-                                                           NSFontAttributeName:[UIFont fontWithName:@"Italianno-Regular" size:30],
+                                                           NSFontAttributeName:[UIFont fontWithName:@"Avenir" size:22],
                                                            NSForegroundColorAttributeName:[UIColor whiteColor]}];
     
     

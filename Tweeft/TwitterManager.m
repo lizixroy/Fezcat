@@ -93,7 +93,7 @@ const NSUInteger LOAD_TWEET_BATCH_NUMBER = 40;
 - (void)showAccessDeniedAlert {
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cannot sign in with Twitter"
-                                                    message:@"Please check your Twitter name/password and allow Tweeft to use your Twitter account in iOS system settings"
+                                                    message:@"Please check your Twitter name/password and allow Fezcat to use your Twitter account in iOS system settings"
                                                    delegate:nil
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil, nil];
