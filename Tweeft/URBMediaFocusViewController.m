@@ -833,7 +833,9 @@ static const CGFloat __blurTintColorAlpha = 0.2f;				// defines how much to tint
 			// determine if the loaded url is an animated GIF, and setup accordingly if so
 			if ([[urlPath substringFromIndex:[urlPath length] - 3] isEqualToString:@"gif"]) {
 				staticImageForGif = [UIImage imageWithData:self.urlData];
-				image = [UIImage urb_animatedImageWithAnimatedGIFData:self.urlData];
+//				image = [UIImage urb_animatedImageWithAnimatedGIFData:self.urlData];
+                image = [UIImage imageWithData:self.urlData];
+
 			}
 			else {
 				image = [UIImage imageWithData:self.urlData];
@@ -1301,9 +1303,9 @@ static UIImage *animatedImageWithAnimatedGIFReleasingImageSource(CGImageSourceRe
 
 
 
-+ (UIImage *)urb_animatedImageWithAnimatedGIFData:(NSData *)data {
-	return animatedImageWithAnimatedGIFReleasingImageSource(CGImageSourceCreateWithData(toCF data, NULL));
-}
+//+ (UIImage *)urb_animatedImageWithAnimatedGIFData:(NSData *)data {
+//	return animatedImageWithAnimatedGIFReleasingImageSource(CGImageSourceCreateWithData(toCF data, NULL));
+//}
 
 + (UIImage *)urb_animatedImageWithAnimatedGIFURL:(NSURL *)url {
 	return animatedImageWithAnimatedGIFReleasingImageSource(CGImageSourceCreateWithURL(toCF url, NULL));

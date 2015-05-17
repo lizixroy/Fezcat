@@ -174,7 +174,6 @@ const int LOAD_PAST_TWEET_MARGIN = 4000;
         
         [[TwitterManager sharedObject] fetchNewTweets];
         
-        
     }
     
     self.isLoading = NO;
@@ -417,18 +416,20 @@ const int LOAD_PAST_TWEET_MARGIN = 4000;
     CGSize beforeContentSize = self.tableView.contentSize;
     
     int index = 0;
-    
     for (Tweet *tweet in self.twiterManager.tweets) {
-        
         [self.allTweets insertObject:tweet atIndex:index];
         index++;
     }
     
     [self.tableView reloadData];
-    CGSize afterContentSize = self.tableView.contentSize;
-    CGPoint afterContentOffset = self.tableView.contentOffset;
-    CGPoint newContentOffset = CGPointMake(afterContentOffset.x, afterContentOffset.y + afterContentSize.height - beforeContentSize.height);
-    self.tableView.contentOffset = newContentOffset;
+    
+    if (beforeContentSize.height != 0) {
+        CGSize afterContentSize = self.tableView.contentSize;
+        CGPoint afterContentOffset = self.tableView.contentOffset;
+        CGPoint newContentOffset = CGPointMake(afterContentOffset.x, afterContentOffset.y + afterContentSize.height - beforeContentSize.height);
+        self.tableView.contentOffset = newContentOffset;
+    }
+    
     [self.refreshControl endRefreshing];
     
 }

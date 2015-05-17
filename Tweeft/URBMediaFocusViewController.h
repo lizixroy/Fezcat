@@ -124,6 +124,6 @@
 @end
 
 @interface UIImage (URBAnimatedGIF)
-+ (UIImage *)urb_animatedImageWithAnimatedGIFData:(NSData *)data;
+//+ (UIImage *)urb_animatedImageWithAnimatedGIFData:(NSData *)data;
 + (UIImage *)urb_animatedImageWithAnimatedGIFURL:(NSURL *)url;
 @end

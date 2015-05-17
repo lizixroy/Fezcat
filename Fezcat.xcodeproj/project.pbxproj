@@ -621,9 +621,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D65E6F6C19A2B4F000F7ECA2 /* Tweeft */ = {
+		D65E6F6C19A2B4F000F7ECA2 /* Fezcat */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D65E6F9F19A2B4F000F7ECA2 /* Build configuration list for PBXNativeTarget "Tweeft" */;
+			buildConfigurationList = D65E6F9F19A2B4F000F7ECA2 /* Build configuration list for PBXNativeTarget "Fezcat" */;
 			buildPhases = (
 				9F3E4DB5617B0AAE9B295106 /* Check Pods Manifest.lock */,
 				D65E6F6919A2B4F000F7ECA2 /* Sources */,
@@ -636,7 +636,7 @@
 			);
 			dependencies = (
 			);
-			name = Tweeft;
+			name = Fezcat;
 			productName = Tweeft;
 			productReference = D65E6F6D19A2B4F000F7ECA2 /* Fezcat.app */;
 			productType = "com.apple.product-type.application";
@@ -689,7 +689,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D65E6F6C19A2B4F000F7ECA2 /* Tweeft */,
+				D65E6F6C19A2B4F000F7ECA2 /* Fezcat */,
 				D65E6F8D19A2B4F000F7ECA2 /* TweeftTests */,
 			);
 		};
@@ -880,7 +880,7 @@
 /* Begin PBXTargetDependency section */
 		D65E6F9419A2B4F000F7ECA2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = D65E6F6C19A2B4F000F7ECA2 /* Tweeft */;
+			target = D65E6F6C19A2B4F000F7ECA2 /* Fezcat */;
 			targetProxy = D65E6F9319A2B4F000F7ECA2 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1086,7 +1086,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D65E6F9F19A2B4F000F7ECA2 /* Build configuration list for PBXNativeTarget "Tweeft" */ = {
+		D65E6F9F19A2B4F000F7ECA2 /* Build configuration list for PBXNativeTarget "Fezcat" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D65E6FA019A2B4F000F7ECA2 /* Debug */,
