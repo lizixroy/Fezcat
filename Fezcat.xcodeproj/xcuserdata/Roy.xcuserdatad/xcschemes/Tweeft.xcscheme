@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D65E6F6C19A2B4F000F7ECA2"
-               BuildableName = "Tweeft.app"
+               BuildableName = "Fezcat.app"
                BlueprintName = "Tweeft"
                ReferencedContainer = "container:Fezcat.xcodeproj">
             </BuildableReference>
@@ -57,7 +57,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D65E6F6C19A2B4F000F7ECA2"
-            BuildableName = "Tweeft.app"
+            BuildableName = "Fezcat.app"
             BlueprintName = "Tweeft"
             ReferencedContainer = "container:Fezcat.xcodeproj">
          </BuildableReference>
@@ -77,7 +77,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D65E6F6C19A2B4F000F7ECA2"
-            BuildableName = "Tweeft.app"
+            BuildableName = "Fezcat.app"
             BlueprintName = "Tweeft"
             ReferencedContainer = "container:Fezcat.xcodeproj">
          </BuildableReference>
@@ -96,7 +96,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D65E6F6C19A2B4F000F7ECA2"
-            BuildableName = "Tweeft.app"
+            BuildableName = "Fezcat.app"
             BlueprintName = "Tweeft"
             ReferencedContainer = "container:Fezcat.xcodeproj">
          </BuildableReference>

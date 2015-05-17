@@ -188,7 +188,7 @@ const int LOAD_PAST_TWEET_MARGIN = 4000;
     DefaultManager *defaultManager = [[DefaultManager alloc] init];
     if (![defaultManager isTutorialShowed]) {
         
-        [self showMainTutorialAlert];        
+        [self showMainTutorialAlert];
         
     }
     
@@ -205,7 +205,7 @@ const int LOAD_PAST_TWEET_MARGIN = 4000;
 
 - (void)showScrollTutorialAlert {
     
-    UIAlertController *ac = [UIAlertController alertControllerWithTitle:@"Don't wait!" message:@"Keep scrolling the timeline while Fezcat is loading page for you. After a few seconds scroll to the right to reveal riady-to-view page." preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *ac = [UIAlertController alertControllerWithTitle:@"Don't wait!" message:@"Keep scrolling the timeline while Fezcat loading page for you. After a few seconds scroll to the right to reveal the ready-to-view page." preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
     [ac addAction:action];
     [self presentViewController:ac animated:YES completion:nil];

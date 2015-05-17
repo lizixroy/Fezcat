@@ -372,7 +372,10 @@ const NSUInteger LOAD_TWEET_BATCH_NUMBER = 40;
  */
 - (void)convertTweets:(id)responseObject type:(BOOL)shouldSetNewestId {
     
-    NSLog(@"%@", responseObject);
+    for (NSDictionary *d in responseObject) {
+        NSLog(@"%@", d);
+        break;
+    }
     
     self.tweets = nil;
     
@@ -432,6 +435,9 @@ const NSUInteger LOAD_TWEET_BATCH_NUMBER = 40;
                 CGFloat width = [[[[media objectForKey:@"sizes"] objectForKey:@"medium"] objectForKey:@"w"] floatValue] ;
                 tweet.media_image_height = height;
                 tweet.media_image_width = width;
+                // remove the media url from text
+                NSString *display_url = [media objectForKey:@"url"];
+                tweet.text = [tweet.text stringByReplacingOccurrencesOfString:display_url withString:@""];
                 
             }
             
