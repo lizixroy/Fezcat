@@ -714,10 +714,33 @@ const NSUInteger LOAD_TWEET_BATCH_NUMBER = 40;
     return _newestTweetId;
 }
 
-- (void)cleanCache {
+- (void)cleanCacheExceptForUrls:(NSMutableArray *)urls names:(NSMutableArray *)names {
+    
+    NSMutableDictionary *neededMedia = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *neededThumbnails = [[NSMutableDictionary alloc] init];
+    
+    for (NSString *key in self.cachedMedia) {
+        for (NSString *url in urls) {
+            if ([key isEqualToString:url]) {
+                [neededMedia setObject:[self.cachedMedia objectForKey:key] forKey:key];
+                break;
+            }
+        }
+    }
+    
+    for (NSString *key in self.cachedThumbnail) {
+        for (NSString *name in names) {
+            if ([key isEqualToString:name]) {
+                [neededThumbnails setObject:[self.cachedThumbnail objectForKey:key] forKey:key];
+            }
+        }
+    }
     
     [self.cachedMedia removeAllObjects];
     [self.cachedThumbnail removeAllObjects];
+    
+    self.cachedMedia = neededMedia;
+    self.cachedThumbnail = neededThumbnails;
     
 }
 

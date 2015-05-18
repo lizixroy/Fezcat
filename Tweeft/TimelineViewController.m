@@ -48,6 +48,8 @@ typedef enum ScorllDirection {
 @property (nonatomic, strong) UIAlertView *actionFailedAlert;
 @property (nonatomic, strong) UIImage *currentSavingImage;
 @property (nonatomic, strong) NSString *copyingText;
+@property (nonatomic, strong) NSMutableArray *visibleUrls;
+@property (nonatomic, strong) NSMutableArray *visibleNames;
 
 @end
 
@@ -214,10 +216,12 @@ const int LOAD_PAST_TWEET_MARGIN = 4000;
 
 - (void)didReceiveMemoryWarning
 {
-    [super didReceiveMemoryWarning];    
-    [self.twiterManager cleanCache];
+    [super didReceiveMemoryWarning];
+    [self getVisibleCellInfo];
+    [self.twiterManager cleanCacheExceptForUrls:self.visibleUrls names:self.visibleNames];
     
 }
+
 
 #pragma mark - Table view data source
 
@@ -658,6 +662,30 @@ const int LOAD_PAST_TWEET_MARGIN = 4000;
 }
 
 #pragma mark - lazy instantiation
+- (NSMutableArray *)visibleUrls {
+    
+    if (_visibleUrls == nil) {
+        
+        _visibleUrls = [[NSMutableArray alloc] init];
+        
+    }
+    
+    return _visibleUrls;
+    
+}
+
+- (NSMutableArray *)visibleNames {
+    
+    if (_visibleNames == nil) {
+        
+        _visibleNames = [[NSMutableArray alloc] init];
+        
+    }
+    
+    return _visibleNames;
+    
+}
+
 -(UIAlertView *)actionFailedAlert {
     
     if (_actionFailedAlert == nil) {
@@ -776,11 +804,12 @@ const int LOAD_PAST_TWEET_MARGIN = 4000;
     
 }
 
-
 - (void)appDidEnterBackground {
     
     //release cached resources to give back memory to system.
-    [self.twiterManager cleanCache];
+    [self getVisibleCellInfo];
+    
+    [self.twiterManager cleanCacheExceptForUrls:self.visibleUrls names:self.visibleNames];
     
 }
 
@@ -810,6 +839,25 @@ const int LOAD_PAST_TWEET_MARGIN = 4000;
     [controller addAction:copyAction];
     [controller addAction:cancelAction];
     [self presentViewController:controller animated:YES completion:nil];
+    
+}
+
+- (void)getVisibleCellInfo {
+    
+    NSArray *paths = [self.tableView indexPathsForVisibleRows];
+    [self.visibleUrls removeAllObjects];
+    [self.visibleNames removeAllObjects];
+    for (NSIndexPath *path in paths) {
+        
+        Tweet *t = [self.allTweets objectAtIndex:path.row];
+        if (t.media_url != nil) {
+            [self.visibleUrls addObject:t.media_url];
+        }
+        if (t.user_name != nil) {
+            [self.visibleNames addObject:t.user_name];
+        }
+        
+    }
     
 }
 

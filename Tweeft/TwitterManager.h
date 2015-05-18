@@ -104,6 +104,6 @@
 /**
  * clean all the cached resoueces to release memory back to the system
  */
-- (void)cleanCache;
+- (void)cleanCacheExceptForUrls:(NSMutableArray *)urls names:(NSMutableArray *)names;
 
 @end
