@@ -732,6 +732,7 @@ const NSUInteger LOAD_TWEET_BATCH_NUMBER = 40;
         for (NSString *name in names) {
             if ([key isEqualToString:name]) {
                 [neededThumbnails setObject:[self.cachedThumbnail objectForKey:key] forKey:key];
+                break;
             }
         }
     }
